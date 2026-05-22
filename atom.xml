@@ -1,0 +1,2477 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:planet="http://planet.intertwingly.net/" xmlns:indexing="urn:atom-extension:indexing" indexing:index="no"><access:restriction xmlns:access="http://www.bloglines.com/about/specs/fac-1.0" relationship="deny"/>
+  <title>Planet ROS</title>
+  <updated>2026-05-22T21:01:43Z</updated>
+  <generator uri="http://intertwingly.net/code/venus/">Venus</generator>
+  <author>
+    <name>Open Robotics</name>
+    <email>info@openrobotics.org</email>
+  </author>
+  <id>http://planet.ros.org/atom.xml</id>
+  <link href="http://planet.ros.org/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://planet.ros.org" rel="alternate"/>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-55021</id>
+    <link href="https://discourse.openrobotics.org/t/ros-2-lyrical-luth-released/55021" rel="alternate" type="text/html"/>
+    <title>ROS 2 Lyrical Luth Released! :tada:</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h1><a class="anchor" href="https://discourse.openrobotics.org#p-113434-ros-2-lyrical-luth-released-1" name="p-113434-ros-2-lyrical-luth-released-1"/>ROS 2 Lyrical Luth Released</h1>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/4/c/4c55ce313192de89086fff1c3b71f015d1d1f51e.png" title="LyricalLuthFINALWithBackground"><img alt="LyricalLuthFINALWithBackground" height="500" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/4/c/4c55ce313192de89086fff1c3b71f015d1d1f51e_2_386x500.png" width="386"/></a></div><p/>
+<p><img alt=":turtle:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/turtle.png?v=15" title=":turtle:" width="20"/> <a href="https://www.worldturtleday.org/">Happy day before World Turtle Day!</a> Today the ROS 2 Release Team is happy to announce the twelth release of ROS 2: Lyrical Luth (codenamed lyrical).</p>
+<p>In addition to the official logo shared previously, we also have a new Lyrical Luth turtlesim and Discourse icon :lyrical: <code>:lyrical:</code> (<em>pending</em>). Our <a href="https://store.openrobotics.org/collections/lyrical-luth-merch">Lyrical T-shirt and swag campaign is still live! You can still grab all the cool merch if you want to support the release</a>. All proceeds help support the <a href="https://www.openrobotics.org/">Open Source Robotics Foundation (OSRF)</a>.</p>
+<p>Lyrical Luth is a <strong>long term support</strong> (LTS) release that will be supported until May 2031. The distribution supports the following platforms:</p>
+<ul>
+<li>Tier 1 platforms:
+<ul>
+<li>Ubuntu 26.04 (Resolute): amd64 and arm64</li>
+<li>Windows 11 (Visual Studio 2022): amd64</li>
+</ul>
+</li>
+<li>Tier 2 platforms:
+<ul>
+<li>RHEL 10: amd64</li>
+</ul>
+</li>
+<li>Tier 3 platforms:
+<ul>
+<li>Ubuntu Noble (24.04)</li>
+<li>macOS</li>
+<li>Debian Trixie</li>
+<li>OpenEmbedded</li>
+</ul>
+</li>
+</ul>
+<p>For more information about RMW implementations, compiler/interpreter versions, and system dependency versions please see <a href="https://docs.ros.org/en/lyrical/Releases/lyrical/supported-platforms.html">Lyrical Luth Supported Platforms</a> and <a href="https://docs.ros.org/en/lyrical/The-ROS2-Project/Platform-Support-Tiers.html">Platform Support Tiers</a>.</p>
+<p>If you are new to ROS, we recommend trying Lyrical Luth on a Tier 1 supported platform. Check the <a href="https://docs.ros.org/en/lyrical/Installation.html">installation instructions</a> and <a href="https://docs.ros.org/en/lyrical/Tutorials.html">tutorials</a> on <a href="http://docs.ros.org">docs.ros.org, and give Lyrical a spin</a>!</p>
+<p>Should you run into any difficulties, please ask a question on ROS Stack Exchange or let us know on Zulip. If you would like to try Lyrical but are afraid of commitment you can find <a href="https://hub.docker.com/_/ros/">Lyrical Docker containers on Docker Hub shortly</a>.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113434-new-features-and-enhancements-2" name="p-113434-new-features-and-enhancements-2"/>New Features and Enhancements</h2>
+<p>Lyrical Luth is feature packed and full of improvements! If you want the gritty details feel free to peruse the <a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html">release notes</a> and <a href="https://docs.ros.org/en/lyrical/Releases/Lyrical-Luth-Complete-Changelog.html">complete changelog</a> for core ROS 2 packages. We’ve summarized a few new features we’ll think you’ll love below.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113434-new-executors-deliver-improved-performancehttpsdocsrosorgenlyricalreleasesrelease-lyrical-luthhtmlcallback-group-events-executor-rclcpp-3" name="p-113434-new-executors-deliver-improved-performancehttpsdocsrosorgenlyricalreleasesrelease-lyrical-luthhtmlcallback-group-events-executor-rclcpp-3"/><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#callback-group-events-executor-rclcpp">New Executors Deliver Improved Performance</a></h3>
+<p>Looking for better executor performance? Check out the new Callback Group Events Executor. Like its predecessor the <code>EventsExecutor</code>, the <code>EventsCBGExecutor</code> uses an events queue to process ready entities. However, <code>EventsCBGExecutor</code> adds support for multiple sources of ROS time and multiple threads. Compared to the Single and Multithreaded executors, the <code>EventsCBGExecutor</code> <strong>uses 10% to 15% less CPU!</strong> If you are using composable nodes you can Launch a component container with the <code>EventsCBGExecutor</code> using the new <code>--executor-type</code> argument</p>
+<p>We want to send a big shout out to Janosch Machowinski, Skyler Medeiros, and Maurice Alexander Purnawan for making this performance improvement happen!</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113434-asyncio-in-rclpy-with-improved-performancehttpsdocsrosorgenlyricalreleasesrelease-lyrical-luthhtmlasyncnode-lets-you-use-asyncio-rclpy-4" name="p-113434-asyncio-in-rclpy-with-improved-performancehttpsdocsrosorgenlyricalreleasesrelease-lyrical-luthhtmlasyncnode-lets-you-use-asyncio-rclpy-4"/><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#asyncnode-lets-you-use-asyncio-rclpy">Asyncio in RCLPy with Improved Performance!</a></h3>
+<p>Want to use <code>asyncio</code> and <code>rclpy</code> at the same time? Well now you can thanks to a pull request from Nadav Elkabets! Check out our new AsyncNode class. This node runs an asyncio event loop allowing you to call await on any asyncio operation from any ROS subscription, service, or timer callback. Try await <code>client.call(request)</code> to wait for service calls, and the sim-time aware await <code>clock.sleep(...)</code>. Best of all, this class uses significantly less CPU compared to the default <code>SingleThreadedExecutor</code>.</p>
+<p>To get started check out our <a href="https://docs.ros.org/en/lyrical/Tutorials/Intermediate/Writing-An-Async-Node-With-Asyncio-Python.html">Python asyncio Node Tutorial</a> on <a href="http://docs.ros.org">docs.ros.org</a>.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113434-rosidlbuffer-improvements-facilitate-zero-copy-gpu-data-transferhttpsdocsrosorgenlyricalreleasesrelease-lyrical-luthhtmlpublish-messages-without-copying-data-using-rosidl-buffer-5" name="p-113434-rosidlbuffer-improvements-facilitate-zero-copy-gpu-data-transferhttpsdocsrosorgenlyricalreleasesrelease-lyrical-luthhtmlpublish-messages-without-copying-data-using-rosidl-buffer-5"/><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#publish-messages-without-copying-data-using-rosidl-buffer"><code>rosidl::Buffer</code> Improvements Facilitate Zero-Copy GPU Data Transfer</a></h3>
+<p>Moving ROS data to or from a GPU just got a lot faster and easier in ROS 2 Lyrical Luth! If your ROS application uses a GPU for data processing you’ll want to upgrade as soon as possible to take advantage of our new zero-copy data transfer capabilities.</p>
+<p>Are you publishing data on ROS topics, but using that data elsewhere, like a GPU? Tired of copying data out of the GPU before publishing just to copy it back into the GPU in the subscriber? You can now use <code>rosidl::Buffer</code> to publish and subscribe to ROS messages without performing costly data copy operations. You can <a href="https://docs.ros.org/en/lyrical/Concepts/Intermediate/About-Buffer-Backends.html">learn all about this exciting new feature </a> and <a href="https://docs.ros.org/en/lyrical/How-To-Guides/Using-Buffer-Backends.html">how to use it to improve your GPU performance</a> on on <a href="http://docs.ros.org">docs.ros.org</a>.</p>
+<p>To make this performance improvement possible all <code>uint8[]</code> fields now have the type <code>rosidl::Buffer&lt;uint8_t&gt;</code> in C++ instead of <code>std::vector&lt;uint8_t&gt;</code>. You must define your ROS messages with <code>uint8[]</code> fields and install an appropriate <code>rosidl::BufferBackend</code> implementation to take advantage of this feature. Note that only publishers and subscribers using <code>rmw_fastrtps_cpp</code> may use this feature for now, but support in Zenoh is coming soon!</p>
+<p>Using a custom hardware accelerator or machine learning library? You can benefit from this too. See <a href="https://docs.ros.org/en/lyrical/Tutorials/Advanced/Writing-a-Buffer-Backend.html">Writing a <code>rosidl::Buffer</code> backend</a> to learn how to implement your own <code>rosidl::BufferBackend</code>.</p>
+<p>Big thanks to our colleagues at NVIDIA, particularly CY Chen for making this improvement happen!</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113434-miscellaneous-features-6" name="p-113434-miscellaneous-features-6"/>Miscellaneous Features</h3>
+<p>ROS 2 Lyrical Luth comes with a ton of other great new features and we’ve compiled a partial list of them below. Remember, if you are coming from Jazzy (or even Humble or Foxy) you’ll also get all of the <a href="https://docs.ros.org/en/kilted/Releases/Release-Kilted-Kaiju.html">great features we shipped in Kilted Kaiju</a>.</p>
+<ul>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#callback-group-events-executor-rclcpp">Callback Group Events executor (rclcpp)</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#parameter-range-descriptors-check-bounds-for-integer-and-double-arrays-rclcpp">Parameter range descriptors check bounds for integer and double arrays (rclcpp)</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#asyncnode-lets-you-use-asyncio-rclpy">AsyncNode lets you use asyncio (rclpy)</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#publish-messages-without-copying-data-using-rosidl-buffer">Publish messages without copying data using <code>rosidl::Buffer</code></a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#use-yaml-tags-in-parameter-files">Use YAML tags in parameter files</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#more-logging-options-in-launch-files">More logging options in launch files</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#new-substitutions-in-xml-and-yaml-launch-files">New substitutions in XML and YAML launch files</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#choose-ros-logging-backend-at-runtime">Choose ROS logging backend at runtime</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#control-bag-recording-remotely-using-ros-services">Control bag recording remotely using ROS services</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#control-bag-playback-and-recording-using-python">Control bag Playback and Recording using Python</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#circular-recording-by-bag-split">Circular recording by bag split</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#more-descriptive-bag-split-names">More descriptive bag split names</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#rosbag2-message-loss-observability">rosbag2 message-loss observability</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#fish-shell-support">fish shell support</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#ros2-param-get-a-parameter-from-all-nodes"><code>ros2 param get</code> a parameter from all nodes</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#ros2-param-get-and-set-multiple-parameters-on-one-node"><code>ros2 param get</code> and <code>set</code> multiple parameters on one node</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#actions-services-and-environment-variables-in-ros2-doctor-report">Actions, Services, and Environment variables in <code>ros2 doctor --report</code></a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#verbose-service-information-ros2-service-info-verbose">Verbose service information <code>ros2 service info --verbose</code></a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#ros2-topic-bw-multiple-topics-at-once"><code>ros2 topic bw</code> multiple topics at once</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#urdf-improvements">URDF improvements</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#robot-state-publisher-can-read-the-robot-description-from-a-topic"><code>robot_state_publisher</code> can read the robot description from a topic</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#resource-retriever-service">Resource retriever service</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#call-ament-python-install-package-multiple-times">Call ament_python_install_package multiple times</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#new-cmake-target-ament-cmake-ros-core-ament-ros-defaults">New CMake target: <code>ament_cmake_ros_core::ament_ros_defaults</code></a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#new-thread-naming-utilities">New thread naming utilities</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#new-rcutils-apis">New rcutils APIs</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#new-rcl-apis">New <code>rcl</code> APIs</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#pass-constructor-arguments-to-plugins-using-class-loader">Pass constructor arguments to plugins using <code>class_loader</code></a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#runtime-tracing-opt-out-mechanism">Runtime tracing opt-out mechanism</a></li>
+<li><a href="https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html#long-term-tracing-improvements">Long-term tracing improvements</a></li>
+</ul>
+<h1><a class="anchor" href="https://discourse.openrobotics.org#p-113434-a-community-effort-7" name="p-113434-a-community-effort-7"/>A Community Effort</h1>
+<p>ROS 2 is truly a community effort, and this could not have been better exemplified by our public beta testing of Lyrical Luth over the past few weeks. Almost 2651 test cases were put through the ringer with several improvements identified along the way. It really helped “harden” the Lyrical distribution. The release team would like to extend a heartfelt thank you to all testers. For our top twenty testers you should get an e-mail in your inbox with a swag coupon code sometime later next week. A full list of our 110 testers can be found below.</p>
+
+Thank you to all 110 T&amp;T Party Contributors!
+ <a href="https://discourse.openrobotics.org/t/ros-2-lyrical-luth-released/55021/1">(click for more details)</a>
+<p>We also want to thanks the 238 contributors who contributed to this release through code changes, documentation, and testing, and especially to our ROS Boss <a class="mention" href="https://discourse.openrobotics.org/u/sloretz">@sloretz</a>! The following individuals made contributions to the Lyrical release:</p>
+
+A big thank you to our 239 contributors to Lyrical Luth!
+ <a href="https://discourse.openrobotics.org/t/ros-2-lyrical-luth-released/55021/1">(click for more details)</a>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113434-finally-wed-like-to-announce-the-name-of-the-next-ros-2-release-for-may-2027-8" name="p-113434-finally-wed-like-to-announce-the-name-of-the-next-ros-2-release-for-may-2027-8"/>Finally, we’d like to announce the name of the next ROS 2 release for May 2027:</h2>
+<h1><a class="anchor" href="https://discourse.openrobotics.org#p-113434-person_surfing-makoahttpsweheweheorggsdl285cgi-binhdictdd12447lened-11000-00-off-0hdict-00-1-0-10-0-0-0direct-10-ed-4-textpukuielbert2ctextmamaka-0-1l-11-haw-zz-1-zz-1-home-00-3-1-00-0-4-0-0-11-00-0utfzz-8-00-mata-matahttpsenwikipediaorgwikimata_mata-turtle-9" name="p-113434-person_surfing-makoahttpsweheweheorggsdl285cgi-binhdictdd12447lened-11000-00-off-0hdict-00-1-0-10-0-0-0direct-10-ed-4-textpukuielbert2ctextmamaka-0-1l-11-haw-zz-1-zz-1-home-00-3-1-00-0-4-0-0-11-00-0utfzz-8-00-mata-matahttpsenwikipediaorgwikimata_mata-turtle-9"/><img alt=":person_surfing:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/person_surfing.png?v=15" title=":person_surfing:" width="20"/> <a href="https://wehewehe.org/gsdl2.85/cgi-bin/hdict?d=D12447&amp;l=en&amp;e=d-11000-00---off-0hdict--00-1----0-10-0---0---0direct-10-ED--4--textpukuielbert%2ctextmamaka-----0-1l--11-haw-Zz-1---Zz-1-home---00-3-1-00-0--4----0-0-11-00-0utfZz-8-00">Makoa</a> <a href="https://en.wikipedia.org/wiki/Mata_mata">Mata-mata</a> <img alt=":turtle:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/turtle.png?v=15" title=":turtle:" width="20"/></h1>
+<p>Makoa is a Hawaiian word that means fearless or courageous and the Mata-Mata is a South American species of freshwater turtle found in the Amazon basin and river system of the eastern Guianas.</p>
+            <p><small>6 posts - 3 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/ros-2-lyrical-luth-released/55021">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-22T16:11:27Z</updated>
+    <published>2026-05-22T16:11:27Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Katherine_Scott</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/ros-2-lyrical-luth-released/55021.rss" title="ROS 2 Lyrical Luth Released! :tada:"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-55012</id>
+    <link href="https://discourse.openrobotics.org/t/build-a-mujoco-ros2-robotic-arm-workflow-for-embodied-ai/55012" rel="alternate" type="text/html"/>
+    <title>Build a MuJoCo + ROS2 Robotic Arm Workflow for Embodied AI</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h1><a class="anchor" href="https://discourse.openrobotics.org#p-113419-mujoco-simulation-and-ros2-control-workflow-piper-robotic-arm-for-embodied-ai-1" name="p-113419-mujoco-simulation-and-ros2-control-workflow-piper-robotic-arm-for-embodied-ai-1"/>MuJoCo Simulation and ROS2 Control Workflow | Piper Robotic Arm for Embodied AI</h1>
+<p>This project is a <strong>MuJoCo-based simulation foundation</strong> for the <strong>Piper robotic arm</strong>. It is designed to provide a general-purpose MuJoCo simulation environment for the Piper arm, with support for robot control testing and simulation workflow development.</p>
+<p><strong>Project has already completed</strong></p>
+<ul>
+<li>the launch of the C++ based simulation environment</li>
+<li>control testing of the simulated robot using a test ROS 2 control plugin</li>
+</ul>
+<p><strong>Recommended Environment</strong></p>
+<ul>
+<li><strong>Operating System</strong>: Ubuntu 22.04 or compatible Linux distribution</li>
+<li><strong>ROS Version</strong>: ROS 2 Humble</li>
+<li><strong>Compiler</strong>: C++17 or later</li>
+</ul>
+<p><strong>Reference &amp; Resources</strong></p>
+<ul>
+<li><strong>Reference Project</strong>: <code>https://github.com/unitreerobotics/unitree_mujoco</code></li>
+<li><strong>PiPER robotic arm platform</strong>: <code>https://global.agilex.ai/products/piper</code></li>
+</ul>
+<p>The following sections provide step-by-step guidance for building the current version of the <strong>Piper MuJoCo simulation environment</strong> and using the <strong>ROS 2 test plugin</strong> to control the robot in simulation.</p>
+<p><img alt="2026-05-06 15-21-26" class="animated" height="250" src="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/3/e/3e8d4b40ff8eb8970e64f8a638220d98e06e4007.gif" width="400"/></p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-1project-file-structure-2" name="p-113419-h-1project-file-structure-2"/>1.Project File Structure</h2>
+<pre><code class="lang-auto">agilex@agilex-Bellator-N176B:~/project/agilex_arm_mujoco$ tree -L 3
+├── agilex_arm
+│   └── agilex_piper
+│       ├── assets
+│       ├── piper_body.xml
+│       ├── piper.png
+│       ├── piper.xml
+│       └── scene.xml
+├── images
+│   ├── mujoco_piper.png
+│   └── piper.png
+├── README_EN.md
+├── readme.md
+└── simulate
+    ├── CMakeLists.txt
+    ├── config.yaml
+    ├── mujoco
+    │   ├── bin
+    │   ├── include
+    │   ├── lib
+    │   ├── model
+    │   ├── sample
+    │   ├── simulate
+    │   └── THIRD_PARTY_NOTICES
+    └── src
+        ├── lodepng
+        ├── main.cc
+        ├── param.h
+        ├── plugin_manager.cc
+        ├── plugin_manager.h
+        ├── ros2_control_plugin.cc
+        ├── ros2_control_plugin.h
+        └── sim_plugin.h
+</code></pre>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-2project-setup-build-3" name="p-113419-h-2project-setup-build-3"/>2.Project Setup &amp; Build</h2>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-21-build-the-agilex_arm_mujoco-project-4" name="p-113419-h-21-build-the-agilex_arm_mujoco-project-4"/>2.1 Build the <code>agilex_arm_mujoco</code> Project</h3>
+<p>The build process for the <code>agilex_arm_mujoco</code> project follows the same workflow as the <code>unitree_mujoco</code> project.<br/>
+This section provides a step-by-step guide to setting up the simulation base, including optional instructions for enabling the ROS 2 control plugin.</p>
+<h4><a class="anchor" href="https://discourse.openrobotics.org#p-113419-step-1clone-the-repository-5" name="p-113419-step-1clone-the-repository-5"/>Step 1.Clone the Repository</h4>
+<p>First, create a working directory and clone the project repository:</p>
+<pre><code class="lang-bash">mkdir agilex_arm &amp;&amp; cd agilex_arm
+git clone https://github.com/yanyuze1/agilex_arm_mujoco.git
+</code></pre>
+<blockquote>
+<p>By default, the project includes MuJoCo 3.3.0 for ROS 2 control testing.<br/>
+If you want to use a different MuJoCo version, download and replace it manually before building.</p>
+</blockquote>
+<h4><a class="anchor" href="https://discourse.openrobotics.org#p-113419-step-2-two-build-modes-6" name="p-113419-step-2-two-build-modes-6"/>Step 2. Two Build Modes</h4>
+<p>The agilex_arm_mujoco project supports two build modes:</p>
+<ul>
+<li><strong>Option 1: Build without the ROS 2 plugin</strong></li>
+<li><strong>Option 2: Build with the ROS 2 plugin enabled</strong></li>
+</ul>
+<p>Choose the mode based on your development needs.</p>
+<p><strong>Option 1: Without the ROS 2 Plugin</strong></p>
+<ul>
+<li><strong>Step 1</strong>: Edit <code>agilex_mujoco/simulate/CMakeLists.txt</code>, change the default enabled ros2 plugin mode to <code>OFF</code></li>
+</ul>
+<pre><code class="lang-bash"># from
+option(AGILEX_ENABLE_ROS2_CONTROL "Build ROS2 control plugin" ON)
+# change to
+option(AGILEX_ENABLE_ROS2_CONTROL "Build ROS2 control plugin" OFF)
+</code></pre>
+<ul>
+<li><strong>Step 2</strong>: Build the Project. After editing the file, build the simulation base:</li>
+</ul>
+<pre><code class="lang-bash">cd agilex_arm_mujoco/simulate
+mkdir build &amp;&amp; cd build
+cmake ..
+make -j4
+</code></pre>
+<p><strong>Option 2: With the ROS 2 Plugin Enabled</strong></p>
+<p>If you want to test robot control through the ROS 2 plugin, keep the default configuration and build the required ROS 2 dependencies first.</p>
+<ul>
+<li><strong>Step 1</strong>: Clone the Dependency Workspace<br/>
+Create or enter the <code>agilex_arm</code> directory and clone the repository:</li>
+</ul>
+<pre><code class="lang-bash">cd agilex_arm
+git clone https://github.com/yanyuze1/agilex_ws.git
+</code></pre>
+<ul>
+<li><strong>Step 2: Build ROS 2 Dependencies</strong><br/>
+Build the required packages in the ROS 2 workspace:</li>
+</ul>
+<pre><code class="lang-bash">cd agilex_ws
+colcon build --symlink-install --packages-up-to mujoco_ros2_control agilex_piper_mujoco
+source install/setup.bash
+</code></pre>
+<ul>
+<li><strong>Step 3: Build the Simulation Base</strong><br/>
+After the dependency build is complete, compile the simulation project:</li>
+</ul>
+<pre><code class="lang-bash">cd agilex_mujoco/simulate
+mkdir build &amp;&amp; cd build
+cmake ..
+make -j4
+</code></pre>
+<hr/>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-22-run-the-agilex_arm_mujoco-project-7" name="p-113419-h-22-run-the-agilex_arm_mujoco-project-7"/>2.2 Run the agilex_arm_mujoco Project</h3>
+<p>The agilex_arm_mujoco project provides two runtime modes:</p>
+<ul>
+<li><strong>Start the simulation base only</strong></li>
+<li><strong>Start the simulation base with the ROS 2 plugin enabled</strong></li>
+</ul>
+<p>Choose the mode according to your development and testing needs.</p>
+<h4><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-221-start-the-simulation-base-only-8" name="p-113419-h-221-start-the-simulation-base-only-8"/>2.2.1 Start the Simulation Base Only</h4>
+<p>If you only want to launch the simulation environment without ROS 2 integration, use the following command:</p>
+<pre><code class="lang-bash">./agilex_mujoco -h
+./agilex_mujoco -r piper -s scene.xml
+./agilex_mujoco -r piper -s scene.xml -p ros2_control
+</code></pre>
+<p>After successful execution, the MuJoCo simulation environment will launch automatically, displaying the Piper robotic arm in the MuJoCo simulation scene.</p>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/a/5/a51857eebeb7863d79d3da66aff711d4e53ccd2e.jpeg" rel="noopener nofollow ugc" title="image"><img alt="image" height="436" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/a/5/a51857eebeb7863d79d3da66aff711d4e53ccd2e_2_690x436.jpeg" width="690"/></a></div><p/>
+<h4><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-222-start-the-simulation-base-with-the-ros-2-plugin-enabled-9" name="p-113419-h-222-start-the-simulation-base-with-the-ros-2-plugin-enabled-9"/>2.2.2 Start the Simulation Base with the ROS 2 Plugin Enabled</h4>
+<p>If you only want to launch the simulation environment with ROS 2 integration, use the following command:</p>
+<pre><code class="lang-bash">cd agilex_ws
+source install/setup.bash
+ros2 launch agilex_piper_mujoco bringup_agilex_mujoco_cartesian_motion_controller.launch.py   agilex_mujoco_exec:=/home/agilex/project/piper/agilex_mujoco/simulate/build/agilex_mujoco   # The current project uses absolute paths. Please modify them according to your own local path.
+</code></pre>
+<p>When the launch is successful, a MuJoCo simulation window will open and display the Piper robotic arm in the simulation environment.</p>
+<p>Once the environment is fully loaded, you can start sending ROS 2 control commands.</p>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/a/4/a48d7977aaef02a6ee0bba6aaa5453ade5b2439d.jpeg" rel="noopener nofollow ugc" title="image"><img alt="image" height="435" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/a/4/a48d7977aaef02a6ee0bba6aaa5453ade5b2439d_2_690x435.jpeg" width="690"/></a></div><p/>
+<p><strong>Usage Situation</strong></p>
+<p><strong>1. Send a Target End-Effector Pose</strong><br/>
+Use the following command to publish a target pose for the end effector:</p>
+<pre><code class="lang-bash">ros2 topic pub --once /agilex_piper_cartesian_motion_controller/target_frame \
+  geometry_msgs/msg/PoseStamped "{
+    header: {frame_id: 'base_link'},
+    pose: {
+      position: {x: 0.2, y: 0.0, z: 0.2},
+      orientation: {x: 0.0, y: 1.0, z: 0.0, w: 0.0}
+    }
+  }"
+</code></pre>
+<p><img alt="2026-05-06 16-15-04" class="animated" height="250" src="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/6/b/6bea9c948746cc8857da1cad9dc345907fff3e3e.gif" width="400"/></p>
+<p><strong>2. Control the Gripper</strong></p>
+<pre><code class="lang-bash"># Open the Gripper
+ros2 topic pub --once /agilex_piper_gripper_position_controller/commands \
+  std_msgs/msg/Float64MultiArray "{data: [0.035, -0.035]}"
+
+# Close the Gripper
+ros2 topic pub --once /agilex_piper_gripper_position_controller/commands \
+  std_msgs/msg/Float64MultiArray "{data: [0.0, 0.0]}"
+</code></pre>
+<p><img alt="2026-05-06 16-17-31" class="animated" height="250" src="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/c/0/c03191728c101769f4ced0c7cddd821072c761f9.gif" width="400"/></p>
+<p><strong>3. Check the Robot State</strong><br/>
+To view the current end-effector pose, use:</p>
+<pre><code class="lang-bash">ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
+</code></pre>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/f/d/fd358b46b60fe56cd19010ed4eeb4f737024dadc.png" rel="noopener nofollow ugc" title="image"><img alt="image" height="500" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/f/d/fd358b46b60fe56cd19010ed4eeb4f737024dadc_2_538x500.png" width="538"/></a></div><p/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-3afterword-10" name="p-113419-h-3afterword-10"/>3.Afterword</h2>
+<p>This project is built upon and integrated from several open-source repositories. The main credit goes to the original authors and the open-source community.</p>
+<p>We would like to sincerely thank the open-source community for making these technologies accessible through shared code and practical experience.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113419-mujoco-ros2-robotic-manipulation-faq-11" name="p-113419-mujoco-ros2-robotic-manipulation-faq-11"/><img alt=":speech_balloon:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/speech_balloon.png?v=15" title=":speech_balloon:" width="20"/> MuJoCo + ROS2 Robotic Manipulation FAQ</h2>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-1-why-use-mujoco-for-the-piper-robotic-arm-instead-of-gazebo-or-isaac-sim-12" name="p-113419-h-1-why-use-mujoco-for-the-piper-robotic-arm-instead-of-gazebo-or-isaac-sim-12"/>1. Why use MuJoCo for the Piper robotic arm instead of Gazebo or Isaac Sim?</h3>
+<p>MuJoCo provides a lightweight and high-performance physics simulation workflow, making it ideal for rapid robotics prototyping, control validation, and future reinforcement learning research. Compared with heavier simulators, it can run efficiently on more accessible hardware.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-2-can-this-simulation-workflow-be-transferred-to-a-real-piper-robotic-arm-13" name="p-113419-h-2-can-this-simulation-workflow-be-transferred-to-a-real-piper-robotic-arm-13"/>2. Can this simulation workflow be transferred to a real Piper robotic arm?</h3>
+<p>Yes. The ROS2 control architecture is designed to align simulation and real hardware interfaces, making future sim-to-real deployment more practical.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-3-why-build-a-custom-mujoco-ros2-workflow-instead-of-using-existing-robotics-simulators-14" name="p-113419-h-3-why-build-a-custom-mujoco-ros2-workflow-instead-of-using-existing-robotics-simulators-14"/>3. Why build a custom MuJoCo + ROS2 workflow instead of using existing robotics simulators?</h3>
+<p>This project focuses on providing a simpler and more flexible robotics development workflow with lower hardware requirements and easier customization for developers and researchers.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-4-is-this-mujoco-robotic-arm-project-suitable-for-reinforcement-learning-rl-15" name="p-113419-h-4-is-this-mujoco-robotic-arm-project-suitable-for-reinforcement-learning-rl-15"/>4. Is this MuJoCo robotic arm project suitable for reinforcement learning (RL)?</h3>
+<p>Yes. The simulation framework can serve as a foundation for reinforcement learning workflows such as PPO training, imitation learning, grasping policy development, and sim-to-real robotic manipulation research.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-h-5-how-does-ros2-control-work-with-mujoco-simulation-16" name="p-113419-h-5-how-does-ros2-control-work-with-mujoco-simulation-16"/>5. How does ROS2 Control work with MuJoCo simulation?</h3>
+<p>The project integrates ROS2 Control plugins into the MuJoCo simulation environment, allowing developers to send ROS2 motion commands directly to the simulated robotic arm and receive real-time robot state feedback.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113419-still-have-question-17" name="p-113419-still-have-question-17"/>Still Have Question?</h3>
+<p>If you encounter any issues with environment installation, parameter configuration, or RL training, feel free to leave your questions for further discussion.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/build-a-mujoco-ros2-robotic-arm-workflow-for-embodied-ai/55012">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-22T10:19:28Z</updated>
+    <published>2026-05-22T10:19:28Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Agilex_Robotics</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/build-a-mujoco-ros2-robotic-arm-workflow-for-embodied-ai/55012.rss" title="Build a MuJoCo + ROS2 Robotic Arm Workflow for Embodied AI"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54997</id>
+    <link href="https://discourse.openrobotics.org/t/medium-articles-with-overview-of-useful-ros-2-packages/54997" rel="alternate" type="text/html"/>
+    <title>Medium articles with overview of useful ROS 2 packages</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi community.</p>
+<p>I have published two articles on useful tools for ROS 2 on Medium. <a href="https://medium.com/@sigmoid90/useful-tui-tools-for-ros-2-4ea881eda6ff" rel="noopener nofollow ugc">First</a> article on TUI based packages and <a href="https://medium.com/@sigmoid90/web-based-tools-for-ros2-6dbc5ae6e674" rel="noopener nofollow ugc">second</a> article is about web based packages. These articles are presented as short overview and hands-on tutorials on several packages from specific category.</p>
+<p>Looking for your comments. Hope it will be useful for everyone in the community.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/medium-articles-with-overview-of-useful-ros-2-packages/54997">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-21T15:25:46Z</updated>
+    <published>2026-05-21T15:25:46Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Vladimir_Privalov</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/medium-articles-with-overview-of-useful-ros-2-packages/54997.rss" title="Medium articles with overview of useful ROS 2 packages"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54988</id>
+    <link href="https://discourse.openrobotics.org/t/spatialdds-open-spatial-computing-protocol-with-ros-2-bridge/54988" rel="alternate" type="text/html"/>
+    <title>SpatialDDS — open spatial computing protocol with ROS 2 bridge</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi all,</p>
+<p>I’m from Open AR Cloud (<a href="http://openarcloud.org" rel="noopener nofollow ugc">openarcloud.org</a>), a volunteer-run non-profit promoting open and interoperable spatial computing. Our initial focus was around world-scale augmented reality and key enablers like spatial discovery and visual positioning.</p>
+<p>More recently, we’ve created SpatialDDS (<a href="https://spatialdds.org" rel="noopener nofollow ugc">spatialdds.org</a>), a protocol built on DDS for sharing spatial data (detections, poses, maps, zones) across domains — robotics, autonomous vehicles, IoT, digital twins, 6G sensing. It defines typed messages (Detection3D, FramedPose, GeoPose, MapAlignment, etc.) plus spatial discovery and multi-operator namespacing. As an example, it would allow multiple autonomous vehicle fleets to share detections and planned trajectories at an intersection, fused into a model no single fleet could build alone.</p>
+<p>There’s a ROS 2 bridge (sensor_msgs, vision_msgs, tf2 frame mapping), plus bridges for MCAP, MQTT, and WebSocket. The multi-operator fusion demo runs with <code>docker compose up</code>.</p>
+<p>Spec: <a href="https://spatialdds.org" rel="noopener nofollow ugc">spatialdds.org</a> Demo: <a href="https://github.com/OpenArCloud/SpatialDDS-demo" rel="noopener nofollow ugc">github.com/OpenArCloud/SpatialDDS-demo</a></p>
+<p>We’d love to get feedback from the ROS community!</p>
+<p>Cheers,</p>
+<p>James</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/spatialdds-open-spatial-computing-protocol-with-ros-2-bridge/54988">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-21T06:49:58Z</updated>
+    <published>2026-05-21T06:49:58Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>jjackson</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/spatialdds-open-spatial-computing-protocol-with-ros-2-bridge/54988.rss" title="SpatialDDS &#x2014; open spatial computing protocol with ROS 2 bridge"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54980</id>
+    <link href="https://discourse.openrobotics.org/t/discussion-why-vision-guided-robots-still-fail-in-production-even-when-detection-works/54980" rel="alternate" type="text/html"/>
+    <title>[Discussion] Why Vision-Guided Robots Still Fail in Production Even When Detection Works</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi, guys<br/>
+I developing diagnostic programs around whether  the command stream, feedback stream, timing window, and physical responses in ROS remain consistent, with a lightweight experimental software package named <code>ros2_kinematic_guard</code> . I have identified recurring issues in the vision‑guided assembly system:</p>
+<p>The robot “sees correctly” — but the executed grasp/pose slowly diverges from the expected state over time.</p>
+<p>This seems especially common in setups involving:</p>
+<ul>
+<li>RealSense D435i</li>
+<li>TF-based grasp pipelines</li>
+<li>MoveIt servoing</li>
+<li>RGB-D pose estimation</li>
+<li>asynchronous ROS2 nodes</li>
+</ul>
+<p>Typical symptoms observed:</p>
+<ul>
+<li>hand-eye calibration gradually becoming inconsistent after thermal drift</li>
+<li>grasp points oscillating despite stable detections</li>
+<li>TF trees remaining valid while pose execution becomes unstable</li>
+<li>frame timestamp mismatch causing “see correctly, grasp incorrectly”</li>
+<li>retry/relocalization logic amplifying small pose residuals</li>
+</ul>
+<p>Interestingly, most systems still “look healthy” from standard monitoring:</p>
+<ul>
+<li>bbox/confidence remain high</li>
+<li>TF graph exists</li>
+<li>topics publish normally</li>
+<li>planners succeed</li>
+</ul>
+<p>…but the physical execution path drifts.</p>
+<p>Therefore, I intend to adopt a lightweight residual monitoring method from <code>ros2_kinematic_guard</code> , which focuses on three indicators:</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113358-h-1-pose-residual-drift-1" name="p-113358-h-1-pose-residual-drift-1"/>1. Pose Residual Drift</h3>
+<p>Monitoring divergence between:</p>
+<p>expected_pose(t)<br/>
+vs<br/>
+executed_pose(t)</p>
+<p>over time.</p>
+<p>Especially useful for detecting thermal/mechanical calibration drift.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113358-h-2-temporal-coherence-residual-2" name="p-113358-h-2-temporal-coherence-residual-2"/>2. Temporal Coherence Residual</h3>
+<p>Tracking timestamp alignment between:</p>
+<ul>
+<li>image frame</li>
+<li>TF transform</li>
+<li>depth frame</li>
+<li>grasp pose generation</li>
+</ul>
+<p>to detect async ordering issues.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113358-h-3-action-stability-residual-3" name="p-113358-h-3-action-stability-residual-3"/>3. Action Stability Residual</h3>
+<p>Detecting oscillation/jitter in generated grasp points or servo actions across adjacent frames.</p>
+<p>This catches cases where the vision system is technically “working” but unstable under lighting/reflection disturbances.</p>
+<p>The key idea:</p>
+<p>Instead of asking:</p>
+<blockquote>
+<p>“Did perception succeed?”</p>
+</blockquote>
+<p>we ask:</p>
+<blockquote>
+<p>“Did the system state remain converged throughout the perception → planning → action path?”</p>
+</blockquote>
+<p>Curious if others in production robotics are already monitoring these kinds of residuals.</p>
+<p>Especially interested in:</p>
+<ul>
+<li>vision-guided assembly</li>
+<li>dynamic calibration compensation</li>
+<li>ROS2 observability</li>
+<li>VLA/VLM action stability</li>
+<li>production deployment diagnostics</li>
+</ul>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/discussion-why-vision-guided-robots-still-fail-in-production-even-when-detection-works/54980">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-21T01:09:10Z</updated>
+    <published>2026-05-21T01:09:10Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>zc_Liu</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/discussion-why-vision-guided-robots-still-fail-in-production-even-when-detection-works/54980.rss" title="[Discussion] Why Vision-Guided Robots Still Fail in Production Even When Detection Works"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54969</id>
+    <link href="https://discourse.openrobotics.org/t/how-to-build-a-robot-arm-rl-grasping-system-in-isaac-lab-nero-arm/54969" rel="alternate" type="text/html"/>
+    <title>How to Build a Robot Arm RL Grasping System in Isaac Lab | NERO Arm</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h1><a class="anchor" href="https://discourse.openrobotics.org#p-113332-how-to-build-a-robot-arm-rl-grasping-system-in-isaac-lab-nero-arm-1" name="p-113332-how-to-build-a-robot-arm-rl-grasping-system-in-isaac-lab-nero-arm-1"/>How to Build a Robot Arm RL Grasping System in Isaac Lab | NERO Arm</h1>
+<p>This project presents a reinforcement learning workflow for Embodied AI manipulation built on the <strong>Nero robotic arm, SO-ARM101, and NVIDIA Isaac Lab</strong>. It establishes a simulation-driven framework for training and evaluating robotic manipulation policies, with a focus on preparing the system for simulation-to-real transfer.</p>
+<p><strong>Project Summary</strong></p>
+<p><strong>Tech Stack</strong></p>
+<ul>
+<li>RL training pipeline</li>
+<li>policy validation process</li>
+<li>robotic manipulation task configuration</li>
+<li>simulation-to-real transfer preparation</li>
+</ul>
+<p><strong>Key Specifications</strong></p>
+<ul>
+<li><strong>Programming Language</strong>: Python 3.8+</li>
+<li><strong>Hardware</strong>: Nero Robotic Arm <code>https://global.agilex.ai/products/nero</code></li>
+<li><strong>Base Framework</strong>: SO-ARM101 <code>https://github.com/MuammerBay/isaac_so_arm101</code></li>
+<li><strong>Simulation Platform</strong>: NVIDIA Isaac Lab</li>
+<li><strong>Open-source implementation</strong>:<code>https://github.com/agilexrobotics/Agilex-College/tree/master/isaac_sim/agx_arm_IsaacLab</code></li>
+</ul>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-1-project-setup-and-environment-preparation-2" name="p-113332-h-1-project-setup-and-environment-preparation-2"/>1. Project Setup and Environment Preparation</h2>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-11-install-isaac-lab-3" name="p-113332-h-11-install-isaac-lab-3"/>1.1 Install Isaac Lab</h3>
+<p>Follow the official guide to install Isaac Lab:<br/>
+<img alt=":backhand_index_pointing_right:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/backhand_index_pointing_right.png?v=15" title=":backhand_index_pointing_right:" width="20"/> <a href="https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html" rel="noopener nofollow ugc">Isaac Lab Pip Installation Guide</a></p>
+<p>We use the <strong>pip-based installation method</strong> (recommended).</p>
+<p><strong>Environment:</strong></p>
+<ul>
+<li><strong>Conda virtual environment</strong></li>
+<li><strong>Python development environment</strong></li>
+<li><strong>NVIDIA Isaac Lab</strong></li>
+<li><strong>Nero robotic arm project dependencies</strong></li>
+</ul>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/3/1/31ae2bf7a49c1eab74827a93a455919af0ecba98.jpeg" rel="noopener nofollow ugc" title="image"><img alt="image" height="500" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/3/1/31ae2bf7a49c1eab74827a93a455919af0ecba98_2_643x500.jpeg" width="643"/></a></div><p/>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-12-install-the-uv-package-manager-4" name="p-113332-h-12-install-the-uv-package-manager-4"/>1.2 Install the <code>uv</code> Package Manager</h3>
+<p>This project uses <code>uv</code> as its Python package manager.</p>
+<p>As a fast, next-generation tool, uv delivers:</p>
+<ul>
+<li>Faster package installation</li>
+<li>Efficient dependency resolution</li>
+<li>Built-in virtual environment management</li>
+</ul>
+<p>Compared to traditional tools like pip, uv streamlines setup and reduces environment issues in Python-based robotics and embodied AI workflows.</p>
+<p>First, install <code>uv</code> with a single command:</p>
+<pre><code class="lang-bash">curl -LsSf https://astral.sh/uv/install.sh | sh
+</code></pre>
+<p>After installation, restart your terminal or run the following command to activate the <code>uv</code> environment:</p>
+<pre><code class="lang-bash">source $HOME/.cargo/env
+</code></pre>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-13-clone-the-repository-and-install-dependencies-5" name="p-113332-h-13-clone-the-repository-and-install-dependencies-5"/>1.3 Clone the Repository and Install Dependencies</h3>
+<p>Next, clone the project repository, enter the project directory, and use <code>uv</code> to install all required dependencies with one command:</p>
+<pre><code class="lang-bash">git clone https://github.com/smalleha/isaac_so_arm101.git
+cd isaac_so_arm101
+uv sync
+</code></pre>
+<p><code>uv</code> will automatically create a virtual environment and install all necessary dependency packages. The entire process usually takes only a few minutes and is significantly faster than traditional pip-based installation workflows.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-2-environment-validation-6" name="p-113332-h-2-environment-validation-6"/>2. Environment Validation</h2>
+<p>To validate the setup for tasks, we first verify that the required simulation environments for the Nero robotic arm and Piper are properly registered:</p>
+<pre><code class="lang-bash">uv run list_envs
+</code></pre>
+<p>The expected output should include <code>Isaac-Nero-Reach-v0</code> and <code>Isaac-Piper-Reach-v0</code>, confirming that the environments have been installed successfully.</p>
+<p>Next, run a simulation test with a zero-action agent to validate environment execution and ensure the robotic control pipeline works as expected:</p>
+<pre><code class="lang-bash"># Test the Piper environment with a zero-action command
+uv run zero_agent --task Isaac-SO-ARM100-Reach-v0
+</code></pre>
+<p>If the simulation window launches and the robotic arm behaves as intended, the environment is confirmed to be ready.</p>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/c/b/cbbad50dea82a8432d17f06d87e05559829d9fae.jpeg" rel="noopener nofollow ugc" title="image"><img alt="image" height="432" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/c/b/cbbad50dea82a8432d17f06d87e05559829d9fae_2_690x432.jpeg" width="690"/></a></div><p/>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-3-project-file-structure-7" name="p-113332-h-3-project-file-structure-7"/>3. Project File Structure</h2>
+<pre><code class="lang-auto">isaac_so_arm101/
+├── CITATION.cff                # Citation metadata for academic referencing
+├── CONTRIBUTING.md             # Contribution guidelines (PR process, standards)
+├── CONTRIBUTORS.md             # List of project contributors
+├── LICENSE                     # BSD-3-Clause open-source license
+├── README.md                   # Main project documentation (setup, tasks, usage)
+├── pyproject.toml              # Python project metadata (dependencies, build config)
+├── uv.lock                     # Dependency lockfile for reproducible environments
+└── src/
+    └── isaac_so_arm101/
+        ├── __init__.py          # Python package initialization
+        ├── robots/              # Robot models: SO-ARM100/101 simulation configs
+        ├── scripts/             # Executable scripts: training, testing, playback
+        ├── tasks/               # RL task definitions (reach, lift)
+        └── ui_extension_example.py  # Omniverse UI extension example
+</code></pre>
+<p>This directory structure provides a clear overview of the project organization, making it easy to extend with new use cases such as Nero robotic arm example.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-4-download-the-urdf-model-8" name="p-113332-h-4-download-the-urdf-model-8"/>4. Download the URDF Model</h2>
+<p>This project uses the <strong>Nero URDF model</strong> from the agx_arm_urdf repository. After cloning the repository,<br/>
+copy the nero directory into the robots folder of the isaac_so_arm101 project:</p>
+<pre><code class="lang-bash">git clone https://github.com/agilexrobotics/agx_arm_urdf.git
+cd agx_arm_urdf/
+cp -r nero/ isaac_so_arm101/robots
+</code></pre>
+<p>Once the model has been copied, modify <strong>nero_description.urdf</strong> to make it compatible with <strong>Isaac Lab</strong>. Since the original URDF uses ROS-style package paths, these references must be converted to relative paths so that the link and mesh files can be correctly resolved. The base_link configuration is shown below as an example.</p>
+<p><em>Before Edit</em></p>
+<pre><code class="lang-auto">    &lt;link name="base_link"&gt;
+        &lt;inertial&gt;
+            &lt;origin xyz="-0.00319465997 -0.00005467608 0.04321758463" rpy="0 0 0"/&gt;
+            &lt;mass value="1.06458435"/&gt;
+            &lt;inertia ixx="0.00102659855152" ixy="0.00000186219753" ixz="-0.00000295298037" iyy="0.00114399299508" iyz="-0.00000078763492" izz="0.00090872933022"/&gt;
+        &lt;/inertial&gt;
+        &lt;visual&gt;
+            &lt;origin xyz="0 0 0" rpy="0 0 0"/&gt;
+            &lt;geometry&gt;
+                &lt;mesh filename="package://agx_arm_description/agx_arm_urdf/nero/meshes/dae/base_link.dae"/&gt;
+            &lt;/geometry&gt;
+        &lt;/visual&gt;
+        &lt;collision&gt;
+            &lt;origin xyz="0 0 0" rpy="0 0 0"/&gt;
+            &lt;geometry&gt;
+                &lt;mesh filename="package://agx_arm_description/agx_arm_urdf/nero/meshes/base_link.stl"/&gt;
+            &lt;/geometry&gt;
+        &lt;/collision&gt;
+    &lt;/link&gt;
+</code></pre>
+<p><em>After Edit</em></p>
+<pre><code class="lang-auto">    &lt;link name="base_link"&gt;
+        &lt;inertial&gt;
+            &lt;origin xyz="-0.00319465997 -0.00005467608 0.04321758463" rpy="0 0 0"/&gt;
+            &lt;mass value="1.06458435"/&gt;
+            &lt;inertia ixx="0.00102659855152" ixy="0.00000186219753" ixz="-0.00000295298037" iyy="0.00114399299508" iyz="-0.00000078763492" izz="0.00090872933022"/&gt;
+        &lt;/inertial&gt;
+        &lt;visual&gt;
+            &lt;origin xyz="0 0 0" rpy="0 0 0"/&gt;
+            &lt;geometry&gt;
+                &lt;mesh filename="../meshes/dae/base_link.dae"/&gt;
+            &lt;/geometry&gt;
+        &lt;/visual&gt;
+        &lt;collision&gt;
+            &lt;origin xyz="0 0 0" rpy="0 0 0"/&gt;
+            &lt;geometry&gt;
+                &lt;mesh filename="../meshes/base_link.stl"/&gt;
+            &lt;/geometry&gt;
+        &lt;/collision&gt;
+    &lt;/link&gt;
+</code></pre>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-5configuring-isaac-lab-files-9" name="p-113332-h-5configuring-isaac-lab-files-9"/>5.Configuring Isaac Lab Files</h2>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113332-step-1importing-the-urdf-model-10" name="p-113332-step-1importing-the-urdf-model-10"/>Step 1.Importing the URDF Model</h3>
+<p>After modifying the URDF file, you need to write a Python script to import the URDF model and configure the robotic arm’s motor properties, including stiffness, damping, and other relevant parameters.</p>
+<p>This script is typically placed at:<br/>
+<code>src/isaac_so_arm101/robots/nero/nero.py</code></p>
+<p>The content of this file is shown below:</p>
+<pre><code class="lang-Python">from pathlib import Path
+
+import isaaclab.sim as sim_utils
+from isaaclab.actuators import ImplicitActuatorCfg
+from isaaclab.assets.articulation import ArticulationCfg
+
+TEMPLATE_ASSETS_DATA_DIR = Path(__file__).resolve().parent
+
+##
+# Configuration
+##
+
+NERO_CFG = ArticulationCfg(
+    spawn=sim_utils.UrdfFileCfg(
+        fix_base=True,
+        replace_cylinders_with_capsules=True,
+        asset_path=f"{TEMPLATE_ASSETS_DATA_DIR}/urdf/nero_gripper.urdf",
+        activate_contact_sensors=False,  # Disable contact sensors until capsule collision implementation is complete
+        rigid_props=sim_utils.RigidBodyPropertiesCfg(
+            disable_gravity=False,
+            max_depenetration_velocity=5.0,
+        ),
+        articulation_props=sim_utils.ArticulationRootPropertiesCfg(
+            enabled_self_collisions=True,
+            solver_position_iteration_count=8,
+            solver_velocity_iteration_count=0,
+        ),
+        joint_drive=sim_utils.UrdfConverterCfg.JointDriveCfg(
+            gains=sim_utils.UrdfConverterCfg.JointDriveCfg.PDGainsCfg(stiffness=0, damping=0)
+        ),
+    ),
+    init_state=ArticulationCfg.InitialStateCfg(
+        rot=(1.0, 0.0, 0.0, 0.0),
+        joint_pos={
+            "joint1": 0.0,
+            "joint2": 0.0,
+            "joint3": 0.0,
+            "joint4": 2.0,
+            "joint5": 0.0,
+            "joint6": 0.0,
+            "joint7": 0.0,
+            "gripper_joint1": 0.05,
+            "gripper_joint2": -0.05
+        },
+        # Set initial joint velocities to zero
+        joint_vel={".*": 0.0},
+    ),
+    actuators={
+        "arm": ImplicitActuatorCfg(
+            joint_names_expr=["joint.*"],
+            effort_limit=25.0,  # Moderate effort limit to prevent instantaneous impact shocks
+            velocity_limit=1.5,
+            
+            # Stiffness: Optimized for the lightweight Piper robotic arm; prioritizes stability over maximum rigidity
+            stiffness={
+                "joint1": 200.0,
+                "joint2": 170.0,
+                "joint3": 120.0,
+                "joint4": 80.0,
+                "joint5": 50.0,
+                "joint6": 20.0,
+                "joint7": 10.0
+            },
+            
+            # Damping: Critical damping strategy with ratio set to approximately 10%
+            damping={
+                "joint1": 100.0,
+                "joint2": 60.0,
+                "joint3": 70.0,
+                "joint4": 24.0,
+                "joint5": 20.0,
+                "joint6": 10.0,
+                "joint7": 5,
+            },
+        ),
+        "gripper": ImplicitActuatorCfg(
+            joint_names_expr=["gripper_joint1","gripper_joint2"],
+            effort_limit_sim=22,  # Increased from 1.9 to 2.5 for stronger grip
+            velocity_limit_sim=1.5,
+            stiffness=800.0,  # Increased from 25.0 to 60.0 for more reliable closing
+            damping=20.0,  # Increased from 10.0 to 20.0 for stability
+        ),
+    },
+
+    soft_joint_pos_limit_factor=0.9,
+)
+</code></pre>
+<p>Next, create an <strong>init</strong>.py file to initialize the directory as a Python module.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113332-step-2create-task-configuration-files-11" name="p-113332-step-2create-task-configuration-files-11"/>Step 2.Create Task Configuration Files</h3>
+<p>In the <code>tasks/lift</code> directory, create the following files:</p>
+<ul>
+<li>nero_joint_pos_env_cfg.py</li>
+<li>nero_lift_env_cfg.py</li>
+</ul>
+<p>The <code>nero_joint_pos_env_cfg.py</code> file defines the environment configuration for <strong>joint position control</strong>, including the controllable joints, the robot end-effector link, and the basic task parameters.</p>
+<pre><code class="lang-Python"># Copyright (c) 2024-2025, Muammer Bay (LycheeAI), Louis Le Lay
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+import isaaclab_tasks.manager_based.manipulation.lift.mdp as mdp
+from isaaclab.assets import RigidObjectCfg
+
+# from isaaclab.managers NotImplementedError
+from isaaclab.sensors.frame_transformer.frame_transformer_cfg import (
+    FrameTransformerCfg,
+    OffsetCfg,
+)
+from isaaclab.sim.schemas.schemas_cfg import RigidBodyPropertiesCfg
+from isaaclab.sim.spawners.from_files.from_files_cfg import UsdFileCfg
+from isaaclab.utils import configclass
+from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
+from isaac_so_arm101.robots import SO_ARM100_CFG, SO_ARM101_CFG  # noqa: F401
+# from isaac_so_arm101.tasks.lift.lift_env_cfg import LiftEnvCfg
+from isaac_so_arm101.tasks.lift.nero_lift_env_cfg import LiftEnvCfg
+from isaaclab.markers.config import FRAME_MARKER_CFG  # isort: skip
+# from isaac_so_arm101.robots.piper_description.piper import PIPER_CFG
+from isaac_so_arm101.robots.nero_description.nero import NERO_CFG
+@configclass
+class NeroLiftCubeEnvCfg(LiftEnvCfg):
+    def __post_init__(self):
+        # post init of parent
+        super().__post_init__()
+
+        # Set so arm as robot
+        self.scene.robot = NERO_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+
+        # override actions
+        self.actions.arm_action = mdp.JointPositionActionCfg(
+            asset_name="robot",
+            joint_names=["joint1", "joint2", "joint3", "joint4", "joint5", "joint6","joint7" ],
+            scale=0.5,
+            use_default_offset=True,
+        )
+        self.actions.gripper_action = mdp.BinaryJointPositionActionCfg(
+            asset_name="robot",
+            joint_names=["gripper_joint1","gripper_joint2"],
+            open_command_expr={"gripper_joint2": -0.05,"gripper_joint1":0.05},
+            close_command_expr={"gripper_joint2": -0.001,"gripper_joint1":0.0},
+        )   
+        # Set the body name for the end effector
+        self.commands.object_pose.body_name = ["gripper_base"]
+
+        # Set Cube as object
+        self.scene.object = RigidObjectCfg(
+            prim_path="{ENV_REGEX_NS}/Object",
+            init_state=RigidObjectCfg.InitialStateCfg(pos=[0.2, 0.0, 0.015], rot=[1, 0, 0, 0]),
+            spawn=UsdFileCfg(
+                usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/Blocks/DexCube/dex_cube_instanceable.usd",
+                scale=(0.5, 0.5, 0.5),
+                rigid_props=RigidBodyPropertiesCfg(
+                    solver_position_iteration_count=16,
+                    solver_velocity_iteration_count=1,
+                    max_angular_velocity=1000.0,
+                    max_linear_velocity=1000.0,
+                    max_depenetration_velocity=5.0,
+                    disable_gravity=False,
+                ),
+            ),
+        )
+
+        # Listens to the required transforms
+        marker_cfg = FRAME_MARKER_CFG.copy()
+        marker_cfg.markers["frame"].scale = (0.05, 0.05, 0.05)
+        marker_cfg.prim_path = "/Visuals/FrameTransformer"
+        self.scene.ee_frame = FrameTransformerCfg(
+            prim_path="{ENV_REGEX_NS}/Robot/base_link",
+            debug_vis=True,
+            visualizer_cfg=marker_cfg,
+            target_frames=[
+                FrameTransformerCfg.FrameCfg(
+                    prim_path="{ENV_REGEX_NS}/Robot/gripper_base",
+                    name="end_effector",
+                    offset=OffsetCfg(
+                        pos=[0.0, 0.0, 0.125],
+                    ),
+                ),
+            ],
+        )
+
+
+@configclass
+class NeroLiftCubeEnvCfg_PLAY(NeroLiftCubeEnvCfg):
+    def __post_init__(self):
+        # post init of parent
+        super().__post_init__()
+        # make a smaller scene for play
+        self.scene.num_envs = 50
+        self.scene.env_spacing = 2.5
+        # disable randomization for play
+        self.observations.policy.enable_corruption = False
+</code></pre>
+<p>The <code>nero_lift_env_cfg.py</code> file provides the base environment configuration for the lifting task. It specifies the task reward, penalties, policy setup, target point position, and block position, which together define the behavior and objective of the environment.</p>
+<pre><code class="lang-Python"># Copyright (c) 2024-2025, Muammer Bay (LycheeAI), Louis Le Lay
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+from dataclasses import MISSING
+
+import isaaclab.sim as sim_utils
+
+# from . import mdp
+import isaac_so_arm101.tasks.lift.mdp as mdp
+from isaaclab.assets import (
+    ArticulationCfg,
+    AssetBaseCfg,
+    DeformableObjectCfg,
+    RigidObjectCfg,
+)
+from isaaclab.envs import ManagerBasedRLEnvCfg
+from isaaclab.managers import CurriculumTermCfg as CurrTerm
+from isaaclab.managers import EventTermCfg as EventTerm
+from isaaclab.managers import ObservationGroupCfg as ObsGroup
+from isaaclab.managers import ObservationTermCfg as ObsTerm
+from isaaclab.managers import RewardTermCfg as RewTerm
+from isaaclab.managers import SceneEntityCfg
+from isaaclab.managers import TerminationTermCfg as DoneTerm
+from isaaclab.scene import InteractiveSceneCfg
+from isaaclab.sensors.frame_transformer.frame_transformer_cfg import FrameTransformerCfg
+from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdFileCfg
+from isaaclab.utils import configclass
+from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
+
+# from isaaclab.utils.offset import OffsetCfg
+# from isaaclab.utils.noise import AdditiveUniformNoiseCfg as Unoise
+# from isaaclab.utils.visualizer import FRAME_MARKER_CFG
+# from isaaclab.utils.assets import RigidBodyPropertiesCfg
+
+
+##
+# Scene definition
+##
+
+
+@configclass
+class ObjectTableSceneCfg(InteractiveSceneCfg):
+    """Configuration for the lift scene with a robot and a object.
+    This is the abstract base implementation, the exact scene is defined in the derived classes
+    which need to set the target object, robot and end-effector frames
+    """
+
+    # robots: will be populated by agent env cfg
+    robot: ArticulationCfg = MISSING
+    # end-effector sensor: will be populated by agent env cfg
+    ee_frame: FrameTransformerCfg = MISSING
+    # target object: will be populated by agent env cfg
+    object: RigidObjectCfg | DeformableObjectCfg = MISSING
+
+    # Table
+    table = AssetBaseCfg(
+        prim_path="{ENV_REGEX_NS}/Table",
+        init_state=AssetBaseCfg.InitialStateCfg(pos=[0.5, 0, 0], rot=[0.707, 0, 0, 0.707]),
+        spawn=UsdFileCfg(usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/Mounts/SeattleLabTable/table_instanceable.usd"),
+    )
+
+    # plane
+    plane = AssetBaseCfg(
+        prim_path="/World/GroundPlane",
+        init_state=AssetBaseCfg.InitialStateCfg(pos=[0, 0, -1.05]),
+        spawn=GroundPlaneCfg(),
+    )
+
+    # lights
+    light = AssetBaseCfg(
+        prim_path="/World/light",
+        spawn=sim_utils.DomeLightCfg(color=(0.75, 0.75, 0.75), intensity=3000.0),
+    )
+
+
+##
+# MDP settings
+##
+
+
+@configclass
+class CommandsCfg:
+    """Command terms for the MDP."""
+
+    object_pose = mdp.UniformPoseCommandCfg(
+        asset_name="robot",
+        body_name=MISSING,  # will be set by agent env cfg
+        resampling_time_range=(5.0, 5.0),
+        debug_vis=True,
+        ranges=mdp.UniformPoseCommandCfg.Ranges(
+            pos_x=(0.3, 0.35),
+            pos_y=(-0.2, 0.2),
+            pos_z=(0.2, 0.35),
+            roll=(0.0, 0.0),
+            pitch=(0.0, 0.0),
+            yaw=(0.0, 0.0),
+        ),
+    )
+
+
+@configclass
+class ActionsCfg:
+    """Action specifications for the MDP."""
+
+    # will be set by agent env cfg
+    arm_action: mdp.JointPositionActionCfg | mdp.DifferentialInverseKinematicsActionCfg = MISSING
+    gripper_action: mdp.BinaryJointPositionActionCfg = MISSING
+
+
+@configclass
+class ObservationsCfg:
+    """Observation specifications for the MDP."""
+
+    @configclass
+    class PolicyCfg(ObsGroup):
+        """Observations for policy group."""
+
+        joint_pos = ObsTerm(func=mdp.joint_pos_rel)
+        joint_vel = ObsTerm(func=mdp.joint_vel_rel)
+        object_position = ObsTerm(func=mdp.object_position_in_robot_root_frame)
+        target_object_position = ObsTerm(func=mdp.generated_commands, params={"command_name": "object_pose"})
+        actions = ObsTerm(func=mdp.last_action)
+
+        def __post_init__(self):
+            self.enable_corruption = True
+            self.concatenate_terms = True
+
+    # observation groups
+    policy: PolicyCfg = PolicyCfg()
+
+
+@configclass
+class EventCfg:
+    """Configuration for events."""
+
+    reset_all = EventTerm(func=mdp.reset_scene_to_default, mode="reset")
+
+    reset_object_position = EventTerm(
+        func=mdp.reset_root_state_uniform,
+        mode="reset",
+        params={
+            "pose_range": {"x": (0.1, 0.2), "y": (-0.1, 0.2), "z": (0.0, 0.0)},
+            "velocity_range": {},
+            "asset_cfg": SceneEntityCfg("object", body_names="Object"),
+        },
+    )
+
+
+@configclass
+class RewardsCfg:
+    """Reward terms for the MDP."""
+
+    reaching_object = RewTerm(func=mdp.object_ee_distance, params={"std": 0.05}, weight=1.0)
+
+    lifting_object = RewTerm(func=mdp.object_is_lifted, params={"minimal_height": 0.025}, weight=15.0)
+
+    object_goal_tracking = RewTerm(
+        func=mdp.object_goal_distance,
+        params={"std": 0.3, "minimal_height": 0.025, "command_name": "object_pose"},
+        weight=16.0,
+    )
+
+    object_goal_tracking_fine_grained = RewTerm(
+        func=mdp.object_goal_distance,
+        params={"std": 0.05, "minimal_height": 0.025, "command_name": "object_pose"},
+        weight=5.0,
+    )
+
+    # action penalty
+    action_rate = RewTerm(func=mdp.action_rate_l2, weight=-1e-4)
+
+    joint_vel = RewTerm(
+        func=mdp.joint_vel_l2,
+        weight=-1e-4,
+        params={"asset_cfg": SceneEntityCfg("robot")},
+    )
+
+
+@configclass
+class TerminationsCfg:
+    """Termination terms for the MDP."""
+
+    time_out = DoneTerm(func=mdp.time_out, time_out=True)
+
+    object_dropping = DoneTerm(
+        func=mdp.root_height_below_minimum, params={"minimum_height": -0.05, "asset_cfg": SceneEntityCfg("object")}
+    )
+
+
+@configclass
+class CurriculumCfg:
+    """Curriculum terms for the MDP."""
+
+    action_rate = CurrTerm(
+        func=mdp.modify_reward_weight, params={"term_name": "action_rate", "weight": -1e-1, "num_steps": 10000}
+    )
+
+    joint_vel = CurrTerm(
+        func=mdp.modify_reward_weight, params={"term_name": "joint_vel", "weight": -1e-1, "num_steps": 10000}
+    )
+
+
+##
+# Environment configuration
+##
+
+
+@configclass
+class LiftEnvCfg(ManagerBasedRLEnvCfg):
+    """Configuration for the lifting environment."""
+
+    # Scene settings
+    scene: ObjectTableSceneCfg = ObjectTableSceneCfg(num_envs=4096, env_spacing=2.5)
+    # Basic settings
+    observations: ObservationsCfg = ObservationsCfg()
+    actions: ActionsCfg = ActionsCfg()
+    commands: CommandsCfg = CommandsCfg()
+    # MDP settings
+    rewards: RewardsCfg = RewardsCfg()
+    terminations: TerminationsCfg = TerminationsCfg()
+    events: EventCfg = EventCfg()
+    curriculum: CurriculumCfg = CurriculumCfg()
+
+    def __post_init__(self):
+        """Post initialization."""
+        # general settings
+        self.decimation = 2
+        self.episode_length_s = 5.0
+        self.viewer.eye = (2.5, 2.5, 1.5)
+        # simulation settings
+        self.sim.dt = 0.01  # 100Hz
+        self.sim.render_interval = self.decimation
+
+        self.sim.physx.bounce_threshold_velocity = 0.2
+        self.sim.physx.bounce_threshold_velocity = 0.01
+        self.sim.physx.gpu_found_lost_aggregate_pairs_capacity = 1024 * 1024 * 4
+        self.sim.physx.gpu_total_aggregate_pairs_capacity = 16 * 1024
+        self.sim.physx.friction_correlation_distance = 0.00625
+</code></pre>
+<p>Then, the <strong>nero reach task</strong> needs to be registered in <code>src/isaac_so_arm101/tasks/reach/__init__.py</code></p>
+<pre><code class="lang-Python"># Copyright (c) 2024-2025, Muammer Bay (LycheeAI), Louis Le Lay
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# Copyright (c) 2022-2025, The Isaac Lab Project Developers.
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+import gymnasium as gym
+
+from . import agents
+
+##
+# Register Gym environments.
+##
+
+gym.register(
+    id="Isaac-SO-ARM100-Lift-Cube-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm100LiftCubeEnvCfg",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:LiftCubePPORunnerCfg",
+    },
+    disable_env_checker=True,
+)
+
+gym.register(
+    id="Isaac-SO-ARM100-Lift-Cube-Play-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm100LiftCubeEnvCfg_PLAY",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:LiftCubePPORunnerCfg",
+    },
+    disable_env_checker=True,
+)
+
+gym.register(
+    id="Isaac-SO-ARM101-Lift-Cube-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm101LiftCubeEnvCfg",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:LiftCubePPORunnerCfg",
+    },
+    disable_env_checker=True,
+)
+
+gym.register(
+    id="Isaac-SO-ARM101-Lift-Cube-Play-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm101LiftCubeEnvCfg_PLAY",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:LiftCubePPORunnerCfg",
+    },
+    disable_env_checker=True,
+)
+
+gym.register(
+    id="Isaac-Nero-Lift-Cube-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.nero_joint_pos_env_cfg:NeroLiftCubeEnvCfg",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:LiftCubePPORunnerCfg", 
+        "rl_games_cfg_entry_point": f"{agents.__name__}:rl_games_ppo_cfg.yaml",
+
+    },
+    disable_env_checker=True,
+)
+</code></pre>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-6-an-isaac-lab-training-and-evaluation-pipeline-12" name="p-113332-h-6-an-isaac-lab-training-and-evaluation-pipeline-12"/>6. An Isaac Lab Training and Evaluation Pipeline</h2>
+<p>First, activate the Conda environment:</p>
+<pre><code class="lang-bash">conda activate env_isaaclab
+</code></pre>
+<p>Then switch to the project directory:</p>
+<pre><code class="lang-bash">cd isaac_so_arm101
+</code></pre>
+<p>Start training the <strong>Isaac-Nero-Lift-Cube-v0</strong> task in <strong>headless mode</strong> to reduce GPU and display overhead:</p>
+<pre><code class="lang-bash">uv run train --task Isaac-Nero-Lift-Cube-v0 --headless
+</code></pre>
+<p>If your hardware is strong enough, you can also run training with visualization enabled to observe the learning process directly:</p>
+<pre><code class="lang-bash">uv run train --task Isaac-Nero-Lift-Cube-v0
+</code></pre>
+<p>This task is trained for <strong>1,000 iterations</strong>. Once training is finished, use the following command to evaluate the learned policy:</p>
+<pre><code class="lang-bash">uv run play --task Isaac-Nero-Lift-Cube-v0
+</code></pre>
+<p><img alt="nerorl (2)" class="animated" height="431" src="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/1/5/154689022ee8b877f702e340be49c294ef633b58.gif" width="690"/></p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-h-7-summary-13" name="p-113332-h-7-summary-13"/>7. Summary</h2>
+<p>Key outcomes of this work include:</p>
+<ul>
+<li><strong>URDF Model Integration</strong></li>
+<li><strong>Reproducible RL Training Pipeline</strong></li>
+<li><strong>Environment Validation</strong></li>
+</ul>
+<p>The workflow can also be extended to more complex manipulation scenarios, including multi-object grasping and obstacle avoidance, with the <strong>Nero robotic arm</strong> serving as the deployment target for simulation-to-real transfer.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113332-faq-14" name="p-113332-faq-14"/><img alt=":speech_balloon:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/speech_balloon.png?v=15" title=":speech_balloon:" width="20"/> FAQ</h2>
+<p><strong>What is inverse kinematics in robotics?</strong><br/>
+Inverse kinematics (IK) calculates the required joint angles for a robotic arm to reach a target position and orientation.</p>
+<p><strong>How does ROS2 help with robot arm control?</strong><br/>
+ROS2 provides communication, motion control, and integration tools for robotic manipulators, including MoveIt2 and RViz.</p>
+<p><strong>What is the difference between FK and IK?</strong><br/>
+Forward kinematics calculates the end-effector position from joint angles, while inverse kinematics calculates joint angles from a target pose.</p>
+<p><strong>Why use MoveIt2 for robot arms?</strong><br/>
+MoveIt2 simplifies robot arm motion planning, collision checking, and trajectory execution in ROS2 environments.</p>
+<p><strong>Can this IK solver run on a real robot arm?</strong><br/>
+Yes. The parametric IK solver can be deployed on physical robot arms after proper calibration and controller integration.</p>
+<p><strong>Does NERO Arm support Gazebo simulation?</strong><br/>
+Yes. The NERO Arm can be simulated in Gazebo and visualized in RViz for testing and development.</p>
+<p><strong><img alt=":waving_hand:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/waving_hand.png?v=15" title=":waving_hand:" width="20"/> Still Have Question?</strong><br/>
+If you encounter any issues with environment installation, parameter configuration, or RL training, feel free to leave your questions for further discussion.</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/how-to-build-a-robot-arm-rl-grasping-system-in-isaac-lab-nero-arm/54969">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-20T03:21:18Z</updated>
+    <published>2026-05-20T03:21:18Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Agilex_Robotics</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/how-to-build-a-robot-arm-rl-grasping-system-in-isaac-lab-nero-arm/54969.rss" title="How to Build a Robot Arm RL Grasping System in Isaac Lab | NERO Arm"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54963</id>
+    <link href="https://discourse.openrobotics.org/t/fusioncore-icp-odometry-feedback-loop-merged-into-rtabmap-ros/54963" rel="alternate" type="text/html"/>
+    <title>FusionCore + icp_odometry feedback loop merged into rtabmap_ros</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p><a href="https://github.com/introlab/rtabmap_ros/pull/1419" rel="noopener nofollow ugc">PR #1419</a> was merged into introlab/rtabmap_ros last week, which was co-authored by Mathieu Labbe. It adds a TurtleBot3 Gazebo Harmonic demo showing a feedback loop between FusionCore (IMU + wheel UKF) and icp_odometry.</p>
+<p><img alt="fusioncore_gif" class="animated" height="331" src="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/d/3/d3918dff694bc800bc02c578f013499fbe4e9ace.gif" width="690"/></p>
+<p>The architecture is worth describing because the feedback direction is non-obvious:</p>
+<pre><code class="lang-auto">/imu  ──────────────────────┐
+/odom (wheel) ──────────────┤──&gt; FusionCore (UKF)
+/rtabmap/icp_odometry ──────┘    │
+    ^                            │ odom -&gt; base_footprint TF
+    │                            │ /fusion/odom
+    │        guess_frame_id: odom│
+    └──── icp_odometry &lt;─────────┘
+             │
+             └──&gt; rtabmap SLAM ──&gt; map -&gt; odom TF
+
+</code></pre>
+<p>FusionCore runs at 100 Hz and owns the odom frame. icp_odometry uses that frame as the initial guess for scan matching via guess_frame_id. A stable initial guess means scan matching succeeds more consistently and with lower residual error. The ICP result feeds back into FusionCore as a second velocity source (encoder2), tightening the UKF state estimate. rtabmap handles loop closure and map correction on top.</p>
+<p>Each node tightens the other. Neither is strictly downstream.</p>
+<p>To run it on Jazzy:</p>
+<pre><code class="lang-bash">sudo apt install ros-jazzy-fusioncore-ros ros-jazzy-rtabmap-ros \
+                 ros-jazzy-turtlebot3-gazebo ros-jazzy-nav2-bringup
+export TURTLEBOT3_MODEL=waffle
+ros2 launch rtabmap_demos turtlebot3_sim_fusioncore_icp_demo.launch.py
+
+</code></pre>
+<p>Full architecture notes and topic/TF table are in the demo README: <a href="https://github.com/introlab/rtabmap_ros/tree/ros2/rtabmap_demos/launch/turtlebot3/fusioncore" rel="noopener nofollow ugc">https://github.com/introlab/rtabmap_ros/tree/ros2/rtabmap_demos/launch/turtlebot3/fusioncore</a></p>
+<p><a href="https://github.com/introlab/rtabmap_ros/tree/ros2/rtabmap_demos" rel="noopener nofollow ugc">rtabmap_ros/rtabmap_demos at ros2 · introlab/rtabmap_ros</a></p>
+<p>If you are using rtabmap outdoors with GPS, FusionCore also handles that separately: <a href="https://github.com/manankharwar/fusioncore" rel="noopener nofollow ugc">https://github.com/manankharwar/fusioncore</a></p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/fusioncore-icp-odometry-feedback-loop-merged-into-rtabmap-ros/54963">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T18:25:35Z</updated>
+    <published>2026-05-19T18:25:35Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>manankharwar</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/fusioncore-icp-odometry-feedback-loop-merged-into-rtabmap-ros/54963.rss" title="FusionCore + icp_odometry feedback loop merged into rtabmap_ros"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54960</id>
+    <link href="https://discourse.openrobotics.org/t/hello-from-a-ros-2-learner-wheelchair-robot-builder/54960" rel="alternate" type="text/html"/>
+    <title>Hello from a ROS 2 Learner &amp; Wheelchair Robot Builder</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hello ROS Community! <img alt=":waving_hand:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/waving_hand.png?v=15" title=":waving_hand:" width="20"/></p>
+<p>My name is Hariss Abdraman Tahir, and I’m a final-year Computer Engineering student at the University of Maiduguri with a strong passion for robotics, autonomous systems, and embedded hardware.</p>
+<p>I recently joined the ROS ecosystem and am currently learning ROS 2 Jazzy Jalisco while building hands-on projects that combine software, hardware, and autonomous systems engineering.</p>
+<p>My areas of interest include:</p>
+<p>• ROS 2 and robotic software architecture</p>
+<p>• Autonomous ground robots and navigation (Nav2)</p>
+<p>• Drone development for agricultural and surveillance applications</p>
+<p>• Computer vision and perception systems</p>
+<p>• Embedded systems and hardware-software integration</p>
+<p>• Simulation with Gazebo</p>
+<p>• PX4 and MAVSDK for drone autopilot systems</p>
+<p>Current Project</p>
+<p>For my final-year project, I am designing and building a prototype automated navigation wheelchair for clinical environments. The system integrates autonomous navigation, real-time obstacle avoidance, safety-critical design, and human-machine interaction using a ROS 2-based architecture.</p>
+<p>I’m genuinely excited to be part of this community and look forward to learning from experienced developers, contributing to open-source projects, and growing alongside others who share the same passion for robotics.</p>
+<p>Any tips, learning resources, or project feedback are always welcome.</p>
+<p>Thank you for having me!</p>
+            <p><small>5 posts - 4 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/hello-from-a-ros-2-learner-wheelchair-robot-builder/54960">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T16:29:29Z</updated>
+    <published>2026-05-19T16:29:29Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Hariss97</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/hello-from-a-ros-2-learner-wheelchair-robot-builder/54960.rss" title="Hello from a ROS 2 Learner &amp; Wheelchair Robot Builder"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54956</id>
+    <link href="https://discourse.openrobotics.org/t/robotic-agents-hackathon-in-milan-build-with-real-robots-win-hardware/54956" rel="alternate" type="text/html"/>
+    <title>Robotic Agents Hackathon in Milan 🇮🇹 Build with Real Robots + Win Hardware</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hey everyone,</p>
+<p>We’re excited to announce that we’re bringing the <strong>Robotic Agents Hackathon</strong> to <strong>Milan, Italy</strong> this June <img alt=":italy:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/italy.png?v=15" title=":italy:" width="20"/></p>
+<p>After hosting our first edition in San Francisco with 100+ developers building robotic agents and physical AI applications, we’re now bringing the same energy to Europe.</p>
+<p><img alt=":date:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/date.png?v=15" title=":date:" width="20"/> <strong>Date:</strong> June 20th, 2026<br/>
+<img alt=":round_pushpin:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/round_pushpin.png?v=15" title=":round_pushpin:" width="20"/> <strong>Location:</strong> Milan, Italy<br/>
+<img alt=":link:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/link.png?v=15" title=":link:" width="20"/> Registration: <a class="inline-onebox" href="https://luma.com/mmc68m0b" rel="noopener nofollow ugc">Robotic Hackathon · Luma</a></p>
+<p>This is a full-day robotics + AI hackathon focused on building with <strong>real robotic hardware</strong>.</p>
+<p>Developers, students, roboticists, AI engineers, and builders will get the opportunity to:</p>
+<ul>
+<li>
+<p>Build robotic agents and physical AI applications</p>
+</li>
+<li>
+<p>Work directly with robotic hardware</p>
+</li>
+<li>
+<p>Experiment with simulations, SDKs, and agent workflows</p>
+</li>
+<li>
+<p>Collaborate with other robotics developers</p>
+</li>
+<li>
+<p>Demo projects live</p>
+</li>
+<li>
+<p>Win robotic hardware and builder rewards</p>
+</li>
+</ul>
+<p>We’re especially excited to meet more people from the ROS and open robotics ecosystem in Europe.<br/>
+If you’re based in Europe (or nearby), come hack with us in Milan <img alt=":mechanical_arm:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/mechanical_arm.png?v=15" title=":mechanical_arm:" width="20"/></p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/robotic-agents-hackathon-in-milan-build-with-real-robots-win-hardware/54956">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T16:03:44Z</updated>
+    <published>2026-05-19T16:03:44Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Khushi_Sharma</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/robotic-agents-hackathon-in-milan-build-with-real-robots-win-hardware/54956.rss" title="Robotic Agents Hackathon in Milan &#x1F1EE;&#x1F1F9; Build with Real Robots + Win Hardware"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54955</id>
+    <link href="https://discourse.openrobotics.org/t/lidar-selection-guide-practical-comparison-between-m360-and-mid-360-after-purchasing-20-units/54955" rel="alternate" type="text/html"/>
+    <title>LiDAR Selection Guide: Practical Comparison Between M360 and MID-360 After Purchasing 20+ Units</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Our company specializes in robot integration solutions, and over the years, we have used quite a few LiDAR systems. Starting last year, we have extensively used Livox series LiDARs — mainly the <strong>MID-360</strong> and <strong>M360</strong>. To date, we have accumulated over 20 purchases across different projects.</p>
+<p>Here’s a practical comparison based on real-world project experience, not just spec sheets.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113308-the-first-step-dont-start-with-parameters-1" name="p-113308-the-first-step-dont-start-with-parameters-1"/>The First Step: Don’t Start with Parameters</h2>
+<p>Many people compare parameters first — range, power consumption, blind zone. Parameters matter, but we ask three questions first:</p>
+<ol>
+<li><strong>Working environment?</strong> (Indoor / Outdoor / Semi-outdoor)</li>
+<li><strong>Extreme conditions?</strong> (Rain, dust, high/low temperature)</li>
+<li><strong>Budget?</strong></li>
+</ol>
+<p>These three questions can eliminate a significant number of options.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113308-practical-comparison-m360-vs-mid-360-2" name="p-113308-practical-comparison-m360-vs-mid-360-2"/>Practical Comparison: M360 vs MID-360</h2>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-range-50m-vs-70m-3" name="p-113308-range-50m-vs-70m-3"/>Range: 50m vs 70m</h3>
+<p>We tested with white walls (~90% reflectance) and a black sedan (~10% reflectance). Both LiDARs reliably detect over 50m on white walls. On the black sedan: M360 ~20-25m, MID-360 ~25-30m.</p>
+<p>For warehouse navigation (3-5m shelf spacing), 50m is more than enough. For outdoor long-distance driving, 70m gives earlier obstacle detection.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-blind-zone-5cm-vs-10cm-4" name="p-113308-blind-zone-5cm-vs-10cm-4"/>Blind Zone: 5cm vs 10cm</h3>
+<p>This is significant in practice. We had a narrow passage project (1.2m width, 0.8m robot, 20cm clearance each side). With MID-360 (10cm blind zone), occasional wall touches occurred. After switching to M360 (5cm blind zone), wall touches basically disappeared.</p>
+<p><strong>For narrow space navigation (tunnels, shelf passages), 5cm blind zone is essential.</strong></p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-vertical-fov-70-vs-59-5" name="p-113308-vertical-fov-70-vs-59-5"/>Vertical FOV: 70° vs 59°</h3>
+<p>M360: -10°~+60°. At 1.5m height, covers ground at 26cm and ceiling up to 2.6m.<br/>
+MID-360: -7°~+52°. Ground at 18cm, ceiling at 1.9m.</p>
+<p>For ceiling positioning (e.g., shelf navigation in supermarkets), M360’s advantage is crucial.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-power-consumption-45w-vs-65w-6" name="p-113308-power-consumption-45w-vs-65w-6"/>Power Consumption: 4.5W vs 6.5W</h3>
+<p>A 2W difference per unit. With 4 LiDARs (quadruped robot), that’s 8W — potentially 15-20 minutes of battery life difference.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-dual-echo-m360-only-7" name="p-113308-dual-echo-m360-only-7"/>Dual Echo (M360 only)</h3>
+<p>Practical uses:</p>
+<ul>
+<li><strong>Rainy day operation</strong>: Significantly improved point cloud quality in light rain</li>
+<li><strong>Glass detection</strong>: First echo = glass surface, second echo = object behind glass</li>
+</ul>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-ip67-8" name="p-113308-ip67-8"/>IP67</h3>
+<p>Both are now IP67, but M360’s sealing has been market-validated longer.</p>
+<h3><a class="anchor" href="https://discourse.openrobotics.org#p-113308-imu-9" name="p-113308-imu-9"/>IMU</h3>
+<p>Both have 6-axis IMUs. In practice, no significant accuracy difference. For high-precision pose estimation, use an external IMU (BMI088 or ICM42688).</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113308-scenario-based-selection-guide-10" name="p-113308-scenario-based-selection-guide-10"/>Scenario-Based Selection Guide</h2>
+<div class="md-table">
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommendation</th>
+<th>Key Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Indoor AGV/AMR</td>
+<td>MID-360 (budget) or M360 (narrow channels)</td>
+<td>5cm blind zone for narrow spaces</td>
+</tr>
+<tr>
+<td>Outdoor transport/inspection</td>
+<td>M360</td>
+<td>IP67 + dual echo + wider temp range</td>
+</tr>
+<tr>
+<td>Quadruped robots</td>
+<td>M360 (8S+ batteries or 3-4 units)</td>
+<td>Power supply + consumption</td>
+</tr>
+<tr>
+<td>Mowing robots</td>
+<td>M360</td>
+<td>5cm blind zone + IP67</td>
+</tr>
+<tr>
+<td>Humanoid robots</td>
+<td>M360 (waist mount)</td>
+<td>70° FOV better for waist mounting</td>
+</tr>
+<tr>
+<td>Handheld scanning</td>
+<td>M360</td>
+<td>5cm blind zone + dual echo for glass</td>
+</tr>
+</tbody>
+</table>
+</div><h2><a class="anchor" href="https://discourse.openrobotics.org#p-113308-conclusion-11" name="p-113308-conclusion-11"/>Conclusion</h2>
+<p>Spec sheet numbers reflect ideal conditions. Real-world performance depends on installation angle, temperature, reflectivity, and motion speed. <strong>Always test a prototype in your actual environment before bulk procurement.</strong></p>
+<p>The few thousand yuan spent on a prototype is far cheaper than discovering issues after bulk purchase.</p>
+<hr/>
+<p><em>Based on actual project testing at SmartBotParts / TanTu ZhiXing. Parameters should be verified against official specifications.</em><br/>
+<em>Contact: <a href="mailto:sara.gao@smartbotparts.com">sara.gao@smartbotparts.com</a></em></p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/lidar-selection-guide-practical-comparison-between-m360-and-mid-360-after-purchasing-20-units/54955">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T16:03:32Z</updated>
+    <published>2026-05-19T16:03:32Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>SmartBotParts</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/lidar-selection-guide-practical-comparison-between-m360-and-mid-360-after-purchasing-20-units/54955.rss" title="LiDAR Selection Guide: Practical Comparison Between M360 and MID-360 After Purchasing 20+ Units"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54954</id>
+    <link href="https://discourse.openrobotics.org/t/ros2-urdf-mesh-file-types/54954" rel="alternate" type="text/html"/>
+    <title>ROS2 URDF Mesh File Types</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>This is highly related to the discussion on <a href="https://discourse.openrobotics.org/t/web-based-urdf-visualization-tool-and-library-opensourced-from-nasa-jpl/14404">this thread</a>, but not really relevant to the title/stated purpose of the thread so I decided to make a new one.</p>
+<p>With the release of Blender 5.0, the Collada (<code>dae</code>) format is <a href="https://devtalk.blender.org/t/moving-collada-i-o-to-legacy-status/34621/99" rel="noopener nofollow ugc">no longer supported</a>. Of course, we could use older versions of Blender or other applications entirely to edit these files. But this change marks a broader shift away from Collada which is explained in the thread linked above.</p>
+<p>I understand that other mesh types, e.g. <code>ply</code>, <code>glb</code>, <code>obj</code>, can be effectively used with many ROS2 applications. That anything that the mesh loader (e.g. Assimp) will load <a href="https://discourse.openrobotics.org/t/support-the-ply-geometry-format-in-urdf/4325/4">will work</a>. But for the purpose of guidance, I think it would be good if there is a new file format that is agreed upon for new meshes as an alternative to Collada.</p>
+<p><a href="https://wiki.ros.org/urdf/XML/link">The official guidance</a> states the following:</p>
+<blockquote>
+<p>Any geometry format is acceptable but specific application compatibility is dependent on implementation. The recommended format for best texture and color support is Collada .dae files.</p>
+</blockquote>
+<p>Effectively what I am saying is that it would be good to add a new “officially recommended”  file type alongside Collada. I am certainly not saying that support should be dropped for Collada in favor of something newer, but creating new Collada files is becoming more tedious so I think that another file type can be used for URDFs that are created in the future.</p>
+<p>As a quick example of why I think it is important for a new file to be “officially recommended”, while <code>glb</code> files can be imported to Isaac Sim as a standalone, and <code>glb</code> can also be used as a URDF mesh type and displayed in RViz, the Isaac Sim URDF importer <a href="https://forums.developer.nvidia.com/t/how-to-combine-visual-from-a-glb-and-collision-mesh-into-usd-file-that-could-be-loaded-into-isaacsim/303700/2" rel="noopener nofollow ugc">only supports dae, obj, and stl</a> for the mesh types, so a URDF with <code>glb</code> is not easily importable. Presumably, if it was a recommended format, it would be supported by the URDF importer. I am sure that there are probably other applications with similar arbitrary limitations, but that is the first one that comes to mind.</p>
+<p>With the disclaimer that I am not particularly familiar with different 3D file formats, I think that gLTF 2.0 (<code>gltf</code>/<code>glb</code>) makes sense. It is compact, widely supported, and supports meshes and textures in one file.</p>
+<p>This change could start with just an addition to the quoted section above, but I don’t know the full implications of a change like this.</p>
+<p>Are there difficulties that I am overlooking? I would appreciate thoughts on this.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/ros2-urdf-mesh-file-types/54954">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T15:16:55Z</updated>
+    <published>2026-05-19T15:16:55Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>jimmy-mcelwain</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/ros2-urdf-mesh-file-types/54954.rss" title="ROS2 URDF Mesh File Types"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54952</id>
+    <link href="https://discourse.openrobotics.org/t/standardizing-system-default-qos-resolution-across-rmw-implementations/54952" rel="alternate" type="text/html"/>
+    <title>Standardizing SYSTEM_DEFAULT QoS resolution across RMW implementations</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>When a node uses <code>SystemDefaultsQoS()</code> (or leaves any policy to <code>*_SYSTEM_DEFAULT</code>), the intent is clear: delegate QoS<br/>
+resolution to the underlying middleware. In theory, this is the right hook for system-wide QoS configuration without touching<br/>
+node code.</p>
+<p>In practice, the behavior is inconsistent across RMW implementations:</p>
+<ul>
+<li><strong>FastDDS</strong>: supports full XML-based QoS override via <code>FASTDDS_DEFAULT_PROFILES_FILE</code> + <code>RMW_FASTRTPS_USE_QOS_FROM_XML=1</code>.<br/>
+Works as expected for <code>SYSTEM_DEFAULT</code> policies.</li>
+<li><strong>CycloneDDS</strong>: <code>CYCLONEDDS_URI</code> controls participant-level settings (network, threads), not endpoint QoS (reliability,<br/>
+durability, depth). No equivalent mechanism exists.</li>
+<li><strong>Zenoh</strong> (<code>rmw_zenoh</code>): end-to-end reliability for <code>RELIABLE</code> + <code>VOLATILE</code> + <code>KEEP_LAST</code> is not yet fully implemented<br/>
+(<a href="https://github.com/ros2/rmw_zenoh/issues/457" rel="noopener nofollow ugc">ros2/rmw_zenoh#457</a>), and there is no external configuration mechanism for<br/>
+endpoint QoS defaults.</li>
+</ul>
+<p>The consequence is that a node written with <code>SystemDefaultsQoS()</code> — which is arguably the <em>correct</em> way to write portable,<br/>
+externally-configurable nodes — behaves differently depending on which RMW is in use, and is only truly configurable on one of<br/>
+them.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113303-root-cause-1" name="p-113303-root-cause-1"/>Root cause</h2>
+<p>All predefined QoS profiles (<code>SensorDataQoS</code>, <code>ParametersQoS</code>, <code>ServicesQoS</code>, etc.) are defined as <code>static const</code> in<br/>
+<code>rmw/qos_profiles.h</code> — hardcoded values with no indirection layer:</p>
+<div class="md-table">
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Reliability</th>
+<th>Durability</th>
+<th>Depth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>QoS(n)</code> / default</td>
+<td>RELIABLE</td>
+<td>VOLATILE</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>SensorDataQoS()</code></td>
+<td>BEST_EFFORT</td>
+<td>VOLATILE</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>ParametersQoS()</code></td>
+<td>RELIABLE</td>
+<td>VOLATILE</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>ServicesQoS()</code></td>
+<td>RELIABLE</td>
+<td>VOLATILE</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>RosoutQoS()</code></td>
+<td>RELIABLE</td>
+<td>TRANSIENT_LOCAL</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>SystemDefaultsQoS()</code></td>
+<td><em>SYSTEM_DEFAULT</em></td>
+<td><em>SYSTEM_DEFAULT</em></td>
+<td><em>SYSTEM_DEFAULT</em></td>
+</tr>
+</tbody>
+</table>
+</div><p>A node calling <code>SensorDataQoS()</code> gets <code>BEST_EFFORT</code> with depth 5, unconditionally. The only escape hatch is<br/>
+<code>SystemDefaultsQoS()</code>, but its resolution is RMW-specific and undocumented as a standard contract.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113303-proposal-2" name="p-113303-proposal-2"/>Proposal</h2>
+<p>Define a minimal standardized mechanism at the <code>rcl</code> or <code>rmw</code> interface level for resolving <code>SYSTEM_DEFAULT</code> QoS policies. This<br/>
+could be:</p>
+<ul>
+<li>A well-defined env var (e.g. <code>RCL_DEFAULT_QOS_PROFILE</code>) pointing to a vendor-neutral config file (YAML or similar), parsed by<br/>
+<code>rcl</code> before handing off to the RMW.</li>
+<li>Or alternatively, a formal contract in the RMW interface spec requiring each implementation to document how it resolves<br/>
+<code>SYSTEM_DEFAULT</code> policies and what configuration mechanism it exposes.</li>
+</ul>
+<p>This would make <code>SystemDefaultsQoS()</code> actually useful as a portability and deployment tool — especially relevant as more RMW<br/>
+implementations (Zenoh, Eclipse Cyclone, proprietary) diverge from the DDS XML model.</p>
+<p>Interested in hearing whether others have hit this in practice, and whether there is appetite for a REP or a design doc to<br/>
+formalize this.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/standardizing-system-default-qos-resolution-across-rmw-implementations/54952">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T13:03:50Z</updated>
+    <published>2026-05-19T13:03:50Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>antonio_romano</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/standardizing-system-default-qos-resolution-across-rmw-implementations/54952.rss" title="Standardizing SYSTEM_DEFAULT QoS resolution across RMW implementations"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54944</id>
+    <link href="https://discourse.openrobotics.org/t/detecting-execution-collapse-before-hard-e-stop-ros2-kinematic-guard-for-ros-2-amr-agv/54944" rel="alternate" type="text/html"/>
+    <title>Detecting execution collapse before hard E-stop: ros2_kinematic_guard for ROS 2 AMR/AGV</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi ROS community,<br/>
+I’ve been working on a small ROS 2 package called <code>ros2_kinematic_guard</code>. It is a <strong>pre-E-stop guard for ROS 2 AMR/AGV systems</strong>.The idea is simple: Most mobile robot stacks already have timeouts. If <code>/cmd_vel</code> stops arriving, the base driver or controller can stop the robot.But timeouts only answer one question:</p>
+<pre><code class="lang-plaintext">Did a command arrive recently?
+</code></pre>
+<p>They do not answer:</p>
+<p><strong>Is the robot still moving according to the command it was just given?</strong></p>
+<p>That gap matters in AMR/AGV deployments.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113285-why-pre-e-stop-detection-matters-1" name="p-113285-why-pre-e-stop-detection-matters-1"/>Why pre-E-stop detection matters</h2>
+<p>Safety-rated E-stop systems, safety PLCs, and safety lidars are the final protection layer. <code>ros2_kinematic_guard</code> does <strong>not</strong> replace them. The goal is different:</p>
+<p>Detect execution collapse earlier, before the certified safety layer is forced to intervene.<br/>
+Examples:</p>
+<ul>
+<li>wheel slip on wet or oily floors</li>
+<li>wheel-speed / odometry mismatch</li>
+<li>localization jumps from lidar / SLAM glitches</li>
+<li>stale or replayed command windows</li>
+<li>bad Wi-Fi / 5G command bursts</li>
+<li>robot shaking, spinning, or over-correcting before safety lidar cuts power</li>
+</ul>
+<p>Frequent hard stops may contribute to:</p>
+<ul>
+<li>manual recovery time</li>
+<li>production interruption</li>
+<li>payload instability</li>
+<li>mechanical stress on wheels, reducers, and brakes</li>
+<li>unclear root cause during post-incident debugging</li>
+</ul>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113285-why-not-just-a-timeout-2" name="p-113285-why-not-just-a-timeout-2"/>Why not just a timeout?</h2>
+<p>A timeout can detect silence. It cannot detect a physically inconsistent command-feedback episode. For example:</p>
+<pre><code class="lang-auto">/cmd_vel is still arriving normallybut /odom no longer matches the commanded motion
+</code></pre>
+<p>That can happen during wheel slip, localization jumps, or command bursts after network buffering. <code>ros2_kinematic_guard</code> watches both <code>/cmd_vel</code> and <code>/odom</code> over a short sliding window. When the robot’s measured motion no longer matches the command stream, it emits a compact <code>KinematicStatus</code> JSON and can optionally clamp or brake the outgoing command.<br/>
+The goal is to provide a local pre-E-stop diagnostic layer. By detecting and self-correcting minor kinematic inconsistencies early, we can significantly reduce the frequency of unforced hard E-stops, thereby improving operational uptime.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113285-zero-code-modification-3" name="p-113285-zero-code-modification-3"/>Zero-code modification</h2>
+<p>The package works as an inline ROS 2 topic filter. You do not need to modify Nav2, behavior trees, planners, controllers, or proprietary base drivers.</p>
+<pre><code class="lang-auto">Nav2 / teleop / planner
+        ↓
+      /cmd_vel
+        ↓
+Kinematic Guard
+        ↓
+  /safe_cmd_vel
+        ↓
+base driver
+</code></pre>
+<p>It supports three modes:</p>
+<ul>
+<li><code>mode:=observe</code> — passive monitoring only, no control intervention</li>
+<li><code>mode:=passthrough</code> — wiring test, <code>/safe_cmd_vel</code> equals <code>/cmd_vel</code></li>
+<li><code>mode:=guard</code> — active mode, can clamp velocity or enter <code>BRAKE_AND_RESYNC</code></li>
+</ul>
+<p>This means first-day deployment can be completely passive.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113285-example-output-4" name="p-113285-example-output-4"/>Example output</h2>
+<p>Healthy window:</p>
+<pre><code class="lang-JSON">{
+  "status": "GREEN",
+  "residual": 0.0009,
+  "causalAlignment": "ALIGNED",
+  "dominantCause": "NONE",
+  "guardAction": "OBSERVE_ONLY",
+  "safeCmd": {
+    "linear_vx": 0.8,
+    "angular_wz": 0.0
+  }
+}
+</code></pre>
+<p>Wheel-slip window in observe mode:</p>
+<pre><code class="lang-JSON">{
+  "status": "RESYNCING",
+  "causalAlignment": "BROKEN",
+  "dominantCause": "WHEEL_SLIP",
+  "guardAction": "OBSERVE_ONLY",
+  "mode": "observe",
+  "controlInterceptionEnabled": false
+}
+</code></pre>
+<p>Wheel-slip window in guard mode:</p>
+<pre><code class="lang-JSON">{
+  "status": "RESYNCING",
+  "causalAlignment": "BROKEN",
+  "dominantCause": "WHEEL_SLIP",
+  "guardAction": "BRAKE_AND_RESYNC",
+  "mode": "guard",
+  "controlInterceptionEnabled": true,
+  "safeCmd": {
+    "linear_vx": 0.0,
+    "angular_wz": 0.0
+  }
+}
+</code></pre>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113285-h-5-minute-demo-5" name="p-113285-h-5-minute-demo-5"/>5-minute demo</h2>
+<p>The demo does not require Gazebo, Isaac Sim, or a real robot. It runs a lightweight mock AMR/AGV and injects wheel slip:</p>
+<pre><code class="lang-auto">/cmd_vel
+   ↓
+Kinematic Guard
+   ↓
+/safe_cmd_vel
+   ↓
+Mock Robot
+   ↓
+/odom
+   ↑
+Kinematic Guard
+</code></pre>
+<p>Build:</p>
+<pre><code class="lang-Bash">source /opt/ros/humble/setup.bash
+colcon build --symlink-install
+source install/setup.bash
+</code></pre>
+<p>Run observe mode:</p>
+<pre><code class="lang-Bash">ros2 launch ros2_kinematic_guard start_pre_estop_demo.launch.py \
+  profile:=wheel_slip \
+  mode:=observe \
+  slip_start_sec:=10.0 \
+  slip_duration_sec:=12.0
+</code></pre>
+<p>Publish a smooth command:</p>
+<pre><code class="lang-Bash">ros2 topic pub -r 20 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.8}, angular: {z: 0.0}}"
+</code></pre>
+<p>Watch the guard:</p>
+<pre><code class="lang-Bash">watch -n 0.2 'ros2 topic echo /kinematic_guard/status --field data --once --full-length | awk "/^---$/{exit} {print}" | python3 -m json.tool'
+</code></pre>
+<p>The README also includes a persistent fault debug mode with <code>slip_duration_sec:=9999.0</code>.</p>
+<p>Repository:</p>
+<p><a href="https://github.com/ZC502/ros2_kinematic_guard.git" rel="noopener nofollow ugc">https://github.com/ZC502/ros2_kinematic_guard.git</a></p>
+<p>I would be very interested in feedback from people working with AMRs/AGVs, Nav2 deployments, base drivers, or post-incident debugging. The core question is:</p>
+<p>Would a lightweight command/odom sanity layer be useful before the system escalates to a hard E-stop?</p>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/detecting-execution-collapse-before-hard-e-stop-ros2-kinematic-guard-for-ros-2-amr-agv/54944">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-19T03:57:09Z</updated>
+    <published>2026-05-19T03:57:09Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>zc_Liu</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/detecting-execution-collapse-before-hard-e-stop-ros2-kinematic-guard-for-ros-2-amr-agv/54944.rss" title="Detecting execution collapse before hard E-stop: ros2_kinematic_guard for ROS 2 AMR/AGV"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54940</id>
+    <link href="https://discourse.openrobotics.org/t/ouster-lidar-techtalk-next-wednesday-may-27-2026-in-san-francisco/54940" rel="alternate" type="text/html"/>
+    <title>Ouster Lidar TechTalk next Wednesday [May 27, 2026] in San Francisco</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>For those in San Francisco Bay Area, Ouster is hosting a TechTalk following the successful launch of Ouster REV8 LiDAR sensors with the first native color Lidar. If you are someone who is into Physical AI, robotics, perception, industrial automation or autonomous driving, come join us as we explore the full potential of the latest innovations from Ouster! RSVP: <a href="https://luma.com/0yamtymo" rel="noopener nofollow ugc" title="https://luma.com/0yamtymo">https://luma.com/0yamtymo</a></p>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/d/6/d6fdcfc175c45e37addea5ea6a1abeccb35339d3.jpeg" rel="noopener nofollow ugc" title="image"><img alt="image" height="388" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/d/6/d6fdcfc175c45e37addea5ea6a1abeccb35339d3_2_690x388.jpeg" width="690"/></a></div><p/>
+<p><span class="bbcode-u">P.S. There will be a raffle on some Ouster &amp; StereoLabs sensors during the event.</span></p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/ouster-lidar-techtalk-next-wednesday-may-27-2026-in-san-francisco/54940">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-18T20:55:16Z</updated>
+    <published>2026-05-18T20:55:16Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Samahu</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/ouster-lidar-techtalk-next-wednesday-may-27-2026-in-san-francisco/54940.rss" title="Ouster Lidar TechTalk next Wednesday [May 27, 2026] in San Francisco"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54938</id>
+    <link href="https://discourse.openrobotics.org/t/pre-release-distribution-freeze-for-lyrical-luth/54938" rel="alternate" type="text/html"/>
+    <title>Pre-release Distribution Freeze for Lyrical Luth</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>As we prepare to launch ROS Lyrical Luth later this week, effective immediately we are <img alt=":ice:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/ice.png?v=15" title=":ice:" width="20"/>freezing <img alt=":ice:" class="emoji" height="20" src="https://emoji.discourse-cdn.com/noto/ice.png?v=15" title=":ice:" width="20"/> <a href="https://github.com/ros/rosdistro" rel="noopener nofollow ugc">ros/rosdistro</a> <code>lyrical/distribution.yaml</code> and changes to the <code>lyrical</code> branches of ROS core packages. We will reopen rosdistro and the <code>lyrical</code> branches for changes after we release ROS Lyrical on <span class="discourse-local-date">Fri, May 22, 2026 7:00 AM UTC</span>.</p>
+<p>During this time we will only consider release-blocking bug fixes. Anything else we will document as a known issue.</p>
+<p>Cheers!</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/pre-release-distribution-freeze-for-lyrical-luth/54938">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-18T19:00:56Z</updated>
+    <published>2026-05-18T19:00:56Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>sloretz</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/pre-release-distribution-freeze-for-lyrical-luth/54938.rss" title="Pre-release Distribution Freeze for Lyrical Luth"/>
+      <updated>2026-05-22T21:01:40Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54937</id>
+    <link href="https://discourse.openrobotics.org/t/roboinfra-ci-cd-apis-for-urdf-validation-auto-fix-moveit-config-generation-and-isaac-sim-usd-conversion/54937" rel="alternate" type="text/html"/>
+    <title>RoboInfra CI/CD APIs for URDF validation, auto-fix, MoveIt config generation, and Isaac Sim USD conversion</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi everyone, I’ve been building RoboInfra, a developer-focused infrastructure platform for robot model workflows.</p>
+<p>The goal is simple:</p>
+<p>Stop robotics developers from wasting hours debugging URDFs manually.</p>
+<p>RoboInfra provides hosted APIs + CI/CD tooling for common ROS pain points:</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113269-current-features-1" name="p-113269-current-features-1"/>Current features</h2>
+<ul>
+<li>
+<p>URDF/Xacro validation</p>
+</li>
+<li>
+<p>URDF auto-fix &amp; repair</p>
+</li>
+<li>
+<p>Semantic URDF diffing</p>
+</li>
+<li>
+<p>MoveIt config generation</p>
+</li>
+<li>
+<p>URDF → SDF conversion</p>
+</li>
+<li>
+<p>URDF → MJCF conversion</p>
+</li>
+<li>
+<p>URDF → USD conversion for NVIDIA Isaac Sim</p>
+</li>
+<li>
+<p>Mesh analysis</p>
+</li>
+<li>
+<p>3D model conversion</p>
+</li>
+<li>
+<p>GitHub Action for PR validation</p>
+</li>
+</ul>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113269-example-github-action-2" name="p-113269-example-github-action-2"/>Example GitHub Action</h2>
+<pre><code class="lang-auto">- uses: roboinfra/validate-urdf-action@v1
+  with:
+    api-key: ${{ secrets.ROBOINFRA_API_KEY }}
+    file: urdf/robot.urdf
+</code></pre>
+<p>Broken URDFs fail the PR automatically.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113269-free-public-validator-3" name="p-113269-free-public-validator-3"/>Free public validator</h2>
+<p><a href="https://roboinfra-dashboard.azurewebsites.net/validator" rel="noopener nofollow ugc">https://roboinfra-dashboard.azurewebsites.net/validator</a></p>
+<p>No signup required.</p>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113269-example-api-4" name="p-113269-example-api-4"/>Example API</h2>
+<pre><code class="lang-auto">curl -X POST https://roboinfra-api.azurewebsites.net/api/urdf/auto-fix \
+  -H "X-Api-Key: rk_your_key" \
+  -F "file=@broken_robot.urdf"
+</code></pre>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113269-docs-5" name="p-113269-docs-5"/>Docs</h2>
+<ul>
+<li>
+<p>API docs: <a href="https://roboinfra-dashboard.azurewebsites.net/docs" rel="noopener nofollow ugc">https://roboinfra-dashboard.azurewebsites.net/docs</a></p>
+</li>
+<li>
+<p>Python SDK: <a href="https://pypi.org/project/roboinfra-sdk/" rel="noopener nofollow ugc">https://pypi.org/project/roboinfra-sdk/</a></p>
+</li>
+</ul>
+<p>Would genuinely appreciate feedback from ROS developers about:</p>
+<ul>
+<li>
+<p>missing workflows</p>
+</li>
+<li>
+<p>painful URDF problems</p>
+</li>
+<li>
+<p>MoveIt setup pain points</p>
+</li>
+<li>
+<p>Isaac Sim integration issues</p>
+</li>
+</ul>
+<p>Thanks.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/roboinfra-ci-cd-apis-for-urdf-validation-auto-fix-moveit-config-generation-and-isaac-sim-usd-conversion/54937">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-18T18:10:06Z</updated>
+    <published>2026-05-18T18:10:06Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Robotic</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/roboinfra-ci-cd-apis-for-urdf-validation-auto-fix-moveit-config-generation-and-isaac-sim-usd-conversion/54937.rss" title="RoboInfra CI/CD APIs for URDF validation, auto-fix, MoveIt config generation, and Isaac Sim USD conversion"/>
+      <updated>2026-05-22T21:01:40Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54933</id>
+    <link href="https://discourse.openrobotics.org/t/open-robotics-in-the-age-of-embodied-ai/54933" rel="alternate" type="text/html"/>
+    <title>Open Robotics in the Age of Embodied AI</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><h1><a class="anchor" href="https://discourse.openrobotics.org#p-113260-open-robotics-in-the-age-of-embodied-ai-why-the-stack-has-to-be-open-all-the-way-down-1" name="p-113260-open-robotics-in-the-age-of-embodied-ai-why-the-stack-has-to-be-open-all-the-way-down-1"/>Open Robotics in the Age of Embodied AI: Why the Stack Has to Be Open All the Way Down</h1>
+<p>For the last twenty years, “open robotics” has mostly meant ROS — a shared middleware that let researchers stop reinventing message-passing and start sharing perception, planning, and control packages. That was a huge win. But the shape of the field has changed. Today the most interesting robotics work happens at the intersection of vision-language models, reinforcement learning, and physical hardware that costs less than a laptop. And in that new landscape, “open middleware” is no longer enough.</p>
+<p>To do credible Embodied AI research, you need <strong>the whole stack open — from the PCB to the Python API</strong>. This post is about why, and what that actually looks like in practice.</p>
+<p>I’ve been building a platform called <strong>3we</strong> to push on this idea. It’s an AI-First, fully open robot platform: open Apache-licensed Python SDK, open CERN-OHL-P hardware, open ROS2 stack, with the same Python code running identically in simulation and on real hardware. The point of this post isn’t to pitch 3we — it’s to use it as a worked example of what “open all the way down” means and why it matters.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-the-three-layers-of-openness-2" name="p-113260-the-three-layers-of-openness-2"/>The Three Layers of Openness</h2>
+<p>When people say “open source robotics,” they usually mean one of three different things, and conflating them causes real problems.</p>
+<p><strong>Layer 1 — Open middleware.</strong> ROS, ROS2, micro-ROS. The plumbing that lets nodes talk to each other. This layer has been open and healthy for a long time.</p>
+<p><strong>Layer 2 — Open algorithms and models.</strong> Nav2, SLAM Toolbox, MoveIt, and increasingly the open VLA models coming out of academic labs. The intelligence layer.</p>
+<p><strong>Layer 3 — Open hardware.</strong> Schematics, PCB layouts, mechanical CAD, BOMs detailed enough that someone with a soldering iron and $500 can reproduce the platform.</p>
+<p>Most platforms are open at Layer 1, partially open at Layer 2, and closed at Layer 3. You can write custom nodes for a TurtleBot, but you can’t fab a new motor controller for it. You can fine-tune a policy on a real robot, but if the IMU goes bad, you’re sending the unit back to the vendor.</p>
+<p>That’s a problem for a research field that increasingly demands <strong>physical experimentation at scale</strong>. If a lab wants ten robots to run a multi-agent RL experiment, the math has to work — both financially and logistically. A $1,200 robot times ten is a grant proposal. A $500 robot times ten is a purchase order.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-why-embodied-ai-forces-the-issue-3" name="p-113260-why-embodied-ai-forces-the-issue-3"/>Why Embodied AI Forces the Issue</h2>
+<p>Three trends in Embodied AI research make full-stack openness non-optional:</p>
+<p><strong>1. Sim2Real is the bottleneck, not the algorithm.</strong></p>
+<p>The published results on policy learning are extraordinary, but the gap between “works in Isaac Sim” and “works on a real robot in a real hallway” is still where most projects die. Closing that gap requires you to control both ends — sim environment and physical hardware — and align them at the level of sensor noise, motor dynamics, and timing. You can’t do that if the firmware is a black box. You can’t do that if the IMU calibration routine lives in the vendor’s cloud service.</p>
+<p><strong>2. Foundation models want to talk to robots.</strong></p>
+<p>A modern VLM-controlled robot is a perception-action loop where a 2-second VLM call sits next to a 50Hz control loop. Making that work means the API the model talks to has to be clean, async-first, and decoupled from the realtime layer. That’s a Python ergonomics problem, not a robotics problem. ROS2 by itself isn’t the answer — you need a layer on top that researchers actually want to use. And that layer needs to be open, so the community can shape it.</p>
+<p><strong>3. Reproducibility is in crisis.</strong></p>
+<p>“We trained a policy on our robot” is a sentence that’s almost impossible to verify if “our robot” is a custom rig in someone’s lab. Open hardware with a published BOM is the robotics equivalent of releasing your training code. If the next lab can’t rebuild your robot for $500 and rerun your experiment, your paper isn’t reproducible — it’s a demo.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-what-ai-first-actually-means-4" name="p-113260-what-ai-first-actually-means-4"/>What “AI-First” Actually Means</h2>
+<p>The phrase gets thrown around. In our case, it means a specific design choice: the <strong>primary API surface is a Python class, not a set of ROS2 topics</strong>.</p>
+<pre><code class="lang-auto">from threewe import Robot
+async with Robot(backend="mock") as robot:
+    image = robot.get_image()
+    await robot.move_to(x=2.0, y=1.0)
+    result = await robot.execute_instruction("go to the red door")
+</code></pre>
+<p>A researcher writing this code never has to know that under the hood there’s a ROS2 graph publishing <code>/cmd_vel</code>, a Nav2 action server handling <code>NavigateToPose</code>, and an ESP32 running micro-ROS over UART. The ROS2 layer is still there — fully open, fully accessible to anyone who needs it — but it’s not a prerequisite.</p>
+<p>Switching from <code>backend="mock"</code> (a zero-dependency 2D kinematic simulator that runs on a laptop with no GPU) to <code>backend="gazebo"</code> (full physics) to <code>backend="isaac_sim"</code> (GPU-accelerated parallel RL) to <code>backend="real"</code> (physical hardware) is a one-string change. Identical API. The same <code>move_to()</code> call resolves to a kinematic update, a Gazebo physics step, an Isaac Sim tensor op, or a real motor command.</p>
+<p>That property — <strong>Sim2Real with zero code changes</strong> — is what unlocks the workflow Embodied AI actually needs: prototype in <code>mock</code>, train in <code>isaac_sim</code>, validate in <code>gazebo</code>, deploy on <code>real</code>, all without rewriting your agent.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-the-hardware-side-open-down-to-the-copper-5" name="p-113260-the-hardware-side-open-down-to-the-copper-5"/>The Hardware Side: Open Down to the Copper</h2>
+<p>The Python API is the part researchers see. The part that makes it credible is everything underneath.</p>
+<p>The 3we reference hardware is fully published under CERN-OHL-P v2:</p>
+<ul>
+<li><strong>KiCad 8 schematic and PCB layout</strong> for the main controller board (ESP32-S3 + DRV8833 motor drivers + safety relay + connectors)</li>
+<li><strong>Mechanical CAD</strong> (STEP and DXF) for the chassis</li>
+<li><strong>Bill of materials</strong> with specific part numbers from accessible distributors</li>
+<li><strong>Assembly guide</strong> with photos at each step</li>
+<li><strong>Production outputs</strong> — Gerbers, drill files, pick-and-place — ready to send to a fab</li>
+</ul>
+<p>The total reproduction cost is under $500. We’ve kept it intentionally accessible: an ESP32-S3 for motor control and micro-ROS, a Raspberry Pi 5 for the main compute, a Hailo-8L M.2 module (13 TOPS) for AI inference, an LD06 360° LiDAR, a BNO055 9-axis IMU, four N20 motors with Mecanum wheels.</p>
+<p>A few design decisions are worth calling out because they’re easy to get wrong:</p>
+<p><strong>Hardware emergency stop.</strong> The physical E-stop cuts motor power through a hardware relay. Software cannot override this path. ISO 13850-compliant, dual-channel. A common mistake in DIY platforms is implementing E-stop as “the software stops sending velocity commands” — that’s not a safety system, that’s an honor system.</p>
+<p><strong>Three-tier watchdog.</strong> A 500ms <code>/cmd_vel</code> timeout in the Nav2 layer, a 1-second software watchdog in the ESP32 firmware, and a 1.6-second hardware watchdog (TPS3813) that resets the MCU if the firmware itself hangs. Each tier catches a different failure mode.</p>
+<p><strong>Payload bus.</strong> A standardized 34-pin connector (we call it PBC-34) so users can hot-plug their own payloads — robotic arms, sensor pods, custom end-effectors — without modifying the base. The payload code runs sandboxed: it can’t directly touch motor control or safety circuits.</p>
+<p>These details aren’t glamorous, but they’re the difference between a platform you can do real research on and a platform that catches fire during a demo.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-open-hardware-has-a-licensing-story-too-6" name="p-113260-open-hardware-has-a-licensing-story-too-6"/>Open Hardware Has a Licensing Story Too</h2>
+<p>One thing that took me a while to get right: <strong>open hardware needs its own license</strong>, separate from the code license.</p>
+<p>In 3we, the split looks like this:</p>
+<ul>
+<li><strong>Code</strong> — Apache 2.0 (firmware, ROS2 packages, Python SDK, web tools)</li>
+<li><strong>Hardware</strong> — CERN-OHL-P v2 (PCB, mechanical, BOM)</li>
+<li><strong>Documentation</strong> — CC-BY-4.0</li>
+</ul>
+<p>CERN-OHL-P (Permissive) is the hardware analog of MIT/Apache: anyone can manufacture, modify, and sell the hardware, with attribution. There’s also CERN-OHL-W (Weakly reciprocal) and CERN-OHL-S (Strongly reciprocal) for projects that want copyleft semantics. Picking the right one is a values decision. Permissive maximizes adoption; reciprocal protects the commons. Neither is wrong.</p>
+<p>The deeper point: <strong>Apache 2.0 doesn’t actually cover hardware</strong>. It’s a software license. Releasing your KiCad files under “Apache” creates legal ambiguity that will bite you the moment a manufacturer wants to commit to a production run. Use a hardware license for hardware.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-what-open-doesnt-mean-7" name="p-113260-what-open-doesnt-mean-7"/>What “Open” Doesn’t Mean</h2>
+<p>A few common misconceptions, since this post is going to be read by people who care about open source:</p>
+<p><strong>Open ≠ free of all constraints.</strong> You can be fully open-source and still have a clear sustainability model. We use a CLA + dual-licensing approach: contributors sign a CLA, the open version stays Apache 2.0 forever, and a commercial license is available for organizations that need different terms (e.g., proprietary derivatives, formal warranty). This is the same pattern Qt, MongoDB (historically), and many others have used. It’s not the only model, but it’s a coherent one.</p>
+<p><strong>Open ≠ vendor-free.</strong> We use ROS2, NVIDIA Isaac Sim, OpenAI APIs, and HuggingFace Hub. Open source doesn’t mean reinventing every dependency — it means the system you build on top is open, and the user can swap any layer.</p>
+<p><strong>Open ≠ unmaintained.</strong> “Open source” sometimes carries a connotation of “abandoned hobbyist project.” That’s a perception problem the community needs to push back on. An open platform with a healthy maintainer, a CI pipeline that runs on every PR, and a benchmark leaderboard with real submissions is not a hobby — it’s infrastructure.</p>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-the-asks-8" name="p-113260-the-asks-8"/>The Asks</h2>
+<p>If you’re reading this and you work on robotics or Embodied AI, here are the things that would actually move the field forward, none of which are 3we-specific:</p>
+<ol>
+<li><strong>Publish your hardware BOM.</strong> Not just “we used a TurtleBot 4.” The actual sensors, the actual cables, the actual mounting brackets. Every paper that doesn’t do this is a half-published paper.</li>
+<li><strong>Pick a hardware license.</strong> If your KiCad files are on GitHub under a software license, fix it. CERN-OHL-P is fine. Solderpad is fine. Any of them is better than none.</li>
+<li><strong>Make Sim2Real reproducible.</strong> Publish the sim config alongside the policy. Document the calibration procedure. The first lab to standardize this will own the citation graph for the next decade.</li>
+<li><strong>Treat the API as a research artifact.</strong> The shape of the Python class researchers write against is not a footnote. It’s the part that gets used a million times.</li>
+</ol>
+<hr/>
+<h2><a class="anchor" href="https://discourse.openrobotics.org#p-113260-whats-next-9" name="p-113260-whats-next-9"/>What’s Next</h2>
+<p>3we is early. The SDK works; the hardware reproduces; the simulation backends are stable; the benchmark leaderboard accepts submissions. There’s a lot of unfinished work: VLA model deployment is rough around the edges, the multi-robot story needs more attention, and the documentation is uneven.</p>
+<p>If any of this resonates — whether you want to use the platform, contribute to it, or just argue with the framing in this post — the repo is at <a href="https://github.com/telleroutlook/3we-robot-platform" rel="noopener nofollow ugc">github.com/telleroutlook/3we-robot-platform</a>. Issues and PRs welcome. Disagreement especially welcome.</p>
+<p>Open robotics in 2026 isn’t just about open code. It’s about open hardware, open APIs, open benchmarks, and a shared commitment to making the work reproducible. We’re not there yet as a field. But the path is clear, and there’s a lot of room for more people to walk it.</p>
+            <p><small>7 posts - 4 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/open-robotics-in-the-age-of-embodied-ai/54933">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-18T16:10:20Z</updated>
+    <published>2026-05-18T16:10:20Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>telleroutlook</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/open-robotics-in-the-age-of-embodied-ai/54933.rss" title="Open Robotics in the Age of Embodied AI"/>
+      <updated>2026-05-22T21:01:40Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54932</id>
+    <link href="https://discourse.openrobotics.org/t/introducing-olo-a-browser-based-ros-2-platform-for-simulation-visualisation-and-robot-programming/54932" rel="alternate" type="text/html"/>
+    <title>Introducing OLO: a browser-based ROS 2 platform for simulation, visualisation and robot programming</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi everyone,</p>
+<p>I wanted to introduce <strong>OLO Robotics</strong>, a UK-based robotics software company building a browser-based platform for programming, simulating, visualising and controlling robots using ROS 2.</p>
+<p>Our aim is not to replace ROS 2, Gazebo, Nav2, MoveIt 2 or the wider open robotics ecosystem. It is the opposite: we are trying to make those tools easier to access, combine and use, particularly for developers, researchers, students and organisations who want to work with robots but may not want to spend their first few days wrestling with local setup, networking, visualisation, simulation and deployment.</p>
+<p>At a high level, OLO provides:</p>
+<ul>
+<li>
+<p>Cloud-hosted robot simulation in the browser</p>
+</li>
+<li>
+<p>A live 3D visualiser / digital twin</p>
+</li>
+<li>
+<p>Browser-based programming using Python and JavaScript</p>
+</li>
+<li>
+<p>Teleoperation and robot control</p>
+</li>
+<li>
+<p>ROS 2 connectivity through an edge “appliance” running on the robot’s network</p>
+</li>
+<li>
+<p>Support for real robots and simulated robots through the same interface</p>
+</li>
+</ul>
+<p>The platform is built around ROS 2 concepts rather than hiding them completely. Users can work at a high level when they want to, but the underlying model still maps onto topics, services, actions, frames, robot descriptions and standard ROS 2 workflows. We want it to be useful for people learning robotics, but also credible for people already working with ROS 2.</p>
+<p>One of the things we are particularly interested in is reducing the friction between simulation and real hardware. For example, a user should be able to start with a robot in a browser-based simulation, write code against it, visualise what is happening, and then move towards a real robot with as little conceptual shift as possible.</p>
+<p>We have just opened the platform more widely and would really value input from the ROS community.</p>
+<p>In particular, I’d be interested in feedback on:</p>
+<ol>
+<li>
+<p>Where tools like this can genuinely help the ROS 2 ecosystem</p>
+</li>
+<li>
+<p>Where we should be careful not to abstract too much away</p>
+</li>
+<li>
+<p>What experienced ROS users would expect from a platform like this</p>
+</li>
+<li>
+<p>What would make it useful for education, prototyping or early-stage robot development</p>
+</li>
+<li>
+<p>Whether there are existing projects, packages or conventions we should be aligning with more closely</p>
+</li>
+</ol>
+<p>We are very conscious that this community has built a huge amount of the foundation that makes platforms like ours possible. So I wanted to introduce OLO here properly, explain what we are trying to do, and open up the conversation.</p>
+<p>Website: <a href="https://olo-robotics.com" rel="noopener nofollow ugc">https://olo-robotics.com</a><br/>
+You can also set up a free account here. Cloud simulation is currently completely free although this will move to a paid-for service: <a class="inline-onebox" href="https://app.olo-robotics.com/register/" rel="noopener nofollow ugc">OLO Robot Management System</a></p>
+<p>I’d be very happy to answer questions, share more technical detail, or hear blunt feedback.</p>
+<p>Thanks,<br/>
+Nick Thompson (CEO)</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/introducing-olo-a-browser-based-ros-2-platform-for-simulation-visualisation-and-robot-programming/54932">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-18T16:09:06Z</updated>
+    <published>2026-05-18T16:09:06Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>olo-robotics</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/introducing-olo-a-browser-based-ros-2-platform-for-simulation-visualisation-and-robot-programming/54932.rss" title="Introducing OLO: a browser-based ROS 2 platform for simulation, visualisation and robot programming"/>
+      <updated>2026-05-22T21:01:40Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54919</id>
+    <link href="https://discourse.openrobotics.org/t/title-would-your-team-use-an-open-loop-regression-testing-tool-for-ros-2-autonomy-stacks/54919" rel="alternate" type="text/html"/>
+    <title>Title: Would your team use an open-loop regression testing tool for ROS 2 autonomy stacks?</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>I’m exploring an idea to help improve the CI process for robotics teams and would love honest feedback from engineers who work on deployed robots.</p>
+<p>A common workflow I hear from robotics teams looks something like:</p>
+<p>A developer makes a perception/localization/planning change → they manually replay a rosbag/MCAP log → inspect outputs in tools like Foxglove / RViz → make a judgment call → ship.</p>
+<p>This feels very manual and inconsistent, especially for teams shipping frequent autonomy updates.</p>
+<p>The idea I’m exploring is a lightweight regression testing tool for ROS 2 stacks that works like CI for autonomy systems:</p>
+<ul>
+<li>
+<p>replay recorded MCAP/rosbag logs</p>
+</li>
+<li>
+<p>run a candidate autonomy stack (likely in Docker)</p>
+</li>
+<li>
+<p>observe selected output topics</p>
+</li>
+<li>
+<p>evaluate pass/fail rules</p>
+</li>
+<li>
+<p>output a CI-friendly test result</p>
+</li>
+</ul>
+<p>Over time, teams could build a regression suite composed of previously recorded real-world failure scenarios.</p>
+<p>Example workflow:</p>
+<ol>
+<li>
+<p>Robot encounters a real-world failure in production (ex: reflective pallet wrap, localization drift, perception miss, repeated recovery loop)</p>
+</li>
+<li>
+<p>Team saves that incident log</p>
+</li>
+<li>
+<p>Engineer makes changes to the autonomy stack</p>
+</li>
+<li>
+<p>CI runs replay tests against previously recorded failure scenarios</p>
+</li>
+<li>
+<p>Tool verifies whether known failures were reintroduced</p>
+</li>
+<li>
+<p>Engineer gets pass/fail results before deployment</p>
+</li>
+</ol>
+<p>This would be intentionally <strong>open-loop only</strong> for an MVP:</p>
+<ul>
+<li>
+<p>no simulation environment recreation</p>
+</li>
+<li>
+<p>no closed-loop driving</p>
+</li>
+<li>
+<p>no digital twin requirements</p>
+</li>
+</ul>
+<p>The goal is to make regression testing easier for perception/localization/prediction teams using real-world logs.</p>
+<p>A few questions I’d love feedback on:</p>
+<ol>
+<li>
+<p>Is this a painful problem at your company, or do most teams already have internal tooling for this?</p>
+</li>
+<li>
+<p>Would rule-based validation be useful, or would teams strongly prefer baseline-vs-baseline output comparison?</p>
+</li>
+<li>
+<p>Is requiring Docker too restrictive?</p>
+</li>
+<li>
+<p>What are the biggest reasons this would fail in your environment?</p>
+</li>
+<li>
+<p>If your team already does something similar, what does your current workflow look like?</p>
+</li>
+</ol>
+<p>I’m especially interested in hearing from teams operating real robots in production environments (warehouse robots, autonomous forklifts, delivery robots, etc.).</p>
+<p>Appreciate any honest feedback.</p>
+            <p><small>7 posts - 4 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/title-would-your-team-use-an-open-loop-regression-testing-tool-for-ros-2-autonomy-stacks/54919">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-17T23:19:04Z</updated>
+    <published>2026-05-17T23:19:04Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>macoberry</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/title-would-your-team-use-an-open-loop-regression-testing-tool-for-ros-2-autonomy-stacks/54919.rss" title="Title: Would your team use an open-loop regression testing tool for ROS 2 autonomy stacks?"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54904</id>
+    <link href="https://discourse.openrobotics.org/t/qerra-v2-classical-explainable-ethical-scoring-engine-with-ros-2-bridge-open-for-feedback/54904" rel="alternate" type="text/html"/>
+    <title>QERRA-v2 Classical — Explainable Ethical Scoring Engine with ROS 2 Bridge (open for feedback)</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi everyone,</p>
+<p>I’ve built QERRA-v2 Classical  —  a 100% classical, fully explainable ethical evaluation engine based on 12 immutable human-centred vectors (SEMEV-12). It returns traceable scores + reasoning with no neural networks.</p>
+<p>The repo includes a ready-to-use ROS 2 bridge (ros2_bridge.py) that runs standalone or as a full node (subscribes to /qerra/situation_input, publishes score, decision, and full SEMEV-12 result).</p>
+<p>Live API + full documentation:</p>
+<aside class="onebox githubrepo">
+  <header class="source">
+
+      <a href="https://github.com/marunigno-ship-it/QERRA-v2-classical" rel="noopener nofollow ugc" target="_blank">github.com</a>
+  </header>
+
+  <article class="onebox-body">
+    <div class="github-row">
+  <img class="thumbnail" height="344" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/9/c/9c4367801a88e9e5f1fae8e726dd6491c36ac7bb_2_690x344.png" width="690"/>
+
+  <h3><a href="https://github.com/marunigno-ship-it/QERRA-v2-classical" rel="noopener nofollow ugc" target="_blank">GitHub - marunigno-ship-it/QERRA-v2-classical: 100% Classical Ethical Decision Framework –...</a></h3>
+
+    <p><span class="github-repo-description">100% Classical Ethical Decision Framework – Extension of QERRA-v2 Hybrid</span></p>
+</div>
+
+  </article>
+
+  <div class="onebox-metadata">
+    
+    
+  </div>
+
+  <div style="clear: both;"/>
+</aside>
+
+<p>I would be very grateful for any feedback, especially:</p>
+<ol>
+<li>Does the topic structure and message types fit typical robotics pipelines?</li>
+<li>What would make the bridge more useful in real Behaviour Trees?</li>
+</ol>
+<p>Happy to adapt based on real use cases.</p>
+<p>Thank you!</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/qerra-v2-classical-explainable-ethical-scoring-engine-with-ros-2-bridge-open-for-feedback/54904">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-16T08:01:49Z</updated>
+    <published>2026-05-16T08:01:49Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>marunigno-ship-it</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/qerra-v2-classical-explainable-ethical-scoring-engine-with-ros-2-bridge-open-for-feedback/54904.rss" title="QERRA-v2 Classical &#x2014; Explainable Ethical Scoring Engine with ROS 2 Bridge (open for feedback)"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54872</id>
+    <link href="https://discourse.openrobotics.org/t/3we-ai-first-python-api-for-mobile-robot-navigation-open-source-300-bom/54872" rel="alternate" type="text/html"/>
+    <title>3we: AI-First Python API for Mobile Robot Navigation (Open Source, $300 BOM)</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi everyone,</p>
+<p>I’d like to share **<strong>3we</strong>** — an open-source platform I’ve been building that provides an AI-First Python API on top of ROS2/Nav2, targeting Embodied AI researchers who want to focus on algorithms rather than ROS2 infrastructure.</p>
+<p>## The Problem</p>
+<p>AI researchers (especially those working with VLMs/VLAs) often want to deploy models on real robots but face:</p>
+<p>- Steep ROS2 learning curve (launch files, topics, services, actions)</p>
+<p>- No clean path from simulation to hardware</p>
+<p>- Existing platforms are either too expensive (TurtleBot 4: $1,200+) or simulation-only (Habitat, Isaac Lab)</p>
+<p>## What 3we Does</p>
+<p>```python</p>
+<p><strong>from</strong> threewe <strong>import</strong> Robot</p>
+<p><strong>async</strong> <strong>with</strong> Robot(backend=“gazebo”) <strong>as</strong> robot:</p>
+<pre><code>image = robot.get_camera_image()     # (H,W,3) uint8
+
+scan = robot.get_lidar_scan()        # LaserScan
+
+**await** robot.move_to(x=5.0, y=3.0)   # Nav2 under the hood
+</code></pre>
+<p>```</p>
+<p>Change `backend=“gazebo”` to `backend=“real”` — same code runs on physical hardware. The ROS2/Nav2 stack is fully transparent to the user.</p>
+<p>**<strong>Four backends with identical API:</strong>**</p>
+<p>- `mock` — zero-dependency 2D kinematics (no ROS2 needed, runs anywhere)</p>
+<p>- `gazebo` — Gazebo Harmonic with full physics</p>
+<p>- `isaac_sim` — NVIDIA Isaac Sim for GPU-accelerated RL training</p>
+<p>- `real` — Physical hardware via ROS2 topics</p>
+<p>## Architecture</p>
+<p>```</p>
+<p>┌─────────────────────────────────────────┐</p>
+<p>│     AI-First Python API (user layer)     │  ← Researchers write code here</p>
+<p>├─────────────────────────────────────────┤</p>
+<p>│     3we-core (middleware)                │  ← Backend dispatch, sensor fusion</p>
+<p>├─────────────────────────────────────────┤</p>
+<p>│     ROS2 / micro-ROS (infrastructure)   │  ← Transparent to users</p>
+<p>│     Nav2, slam_toolbox, ESP32 drivers    │</p>
+<p>└─────────────────────────────────────────┘</p>
+<p>```</p>
+<p>This is NOT a replacement for ROS2 — it’s a layer on top that makes ROS2 accessible to ML researchers while preserving full ROS2 compatibility for roboticists who want low-level access.</p>
+<p>## VLM-Controlled Navigation</p>
+<p>The killer feature for AI researchers: GPT-4o (or any OpenAI-compatible VLM) can directly control the robot through natural language:</p>
+<p>```python</p>
+<p><strong>async</strong> <strong>with</strong> Robot(backend=“gazebo”) <strong>as</strong> robot:</p>
+<pre><code>result = **await** robot.execute_instruction(
+
+    "find the red bottle and stop near it"
+
+)
+
+print(f"Success: {result.success}")
+</code></pre>
+<p>```</p>
+<p>Internally this runs a perception-action loop: capture image → send to VLM → parse JSON action → execute → repeat until done. Works with GPT-4o, Qwen-VL, or local LLaVA.</p>
+<p>## Hardware ($300 BOM)</p>
+<p>Fully open reference hardware under CERN-OHL-P v2:</p>
+<p>| Component | Selection |</p>
+<p>|-----------|-----------|</p>
+<p>| Compute | Raspberry Pi 5 (8GB) |</p>
+<p>| AI Accelerator | Hailo-8L (13 TOPS) |</p>
+<p>| MCU | ESP32-S3 + micro-ROS |</p>
+<p>| LiDAR | LD06 (360°, 2D) |</p>
+<p>| IMU | BNO055 (9-axis) |</p>
+<p>| Drive | 4× N20 motors + Mecanum wheels + DRV8833 |</p>
+<p>| Safety | Dual-channel relay (ISO 13850 E-stop) |</p>
+<p>KiCad 8 PCB files, DXF mechanical drawings, and assembly docs all included.</p>
+<p>## ROS2 Integration Details</p>
+<p>For ROS2 developers who want to know what’s under the hood:</p>
+<p>- **<strong>Navigation</strong>**: Nav2 with DWB planner, parameters tuned for mecanum kinematics</p>
+<p>- **<strong>SLAM</strong>**: slam_toolbox (online async) with LD06</p>
+<p>- **<strong>MCU bridge</strong>**: micro-ROS on ESP32-S3 via USB-C serial transport</p>
+<p>- **<strong>Sensor fusion</strong>**: robot_localization EKF (IMU + wheel odometry)</p>
+<p>- **<strong>Launch</strong>**: Composable nodes, configurable via YAML profiles</p>
+<p>You can always drop down to raw ROS2 topics/services if needed — the Python API doesn’t hide or lock you out.</p>
+<p>## Benchmark Suite</p>
+<p>7 standardized scenes with reproducible baselines:</p>
+<p>```bash</p>
+<p>threewe benchmark run --task pointnav --scene office_v2 --episodes 100</p>
+<p>```</p>
+<p>Gymnasium-compatible environments for RL:</p>
+<p>```python</p>
+<p><strong>import</strong> gymnasium <strong>as</strong> gym</p>
+<p>env = gym.make(“3we/Navigation-v1”, scene=“office_v2”, backend=“mock”)</p>
+<p>```</p>
+<p>## Demo</p>
+<p>![Navigation Demo](<a href="https://img.xuexiao.eu.org/1778836342754-19b737g.gif" rel="noopener nofollow ugc">https://img.xuexiao.eu.org/1778836342754-19b737g.gif</a>)</p>
+<p>Autonomous point-to-point navigation in office_v2 scene with 360° LiDAR visualization.</p>
+<p>## Links</p>
+<p>- **<strong>GitHub</strong>**: <a class="inline-onebox" href="https://github.com/telleroutlook/3we-robot-platform" rel="noopener nofollow ugc">GitHub - telleroutlook/3we-robot-platform: 3we Universal Modular Mobile Robot Platform — Open-source firmware, ROS2, hardware, and SDK · GitHub</a></p>
+<p>- **<strong>Documentation</strong>**: <a href="https://3we.org" rel="noopener nofollow ugc">https://3we.org</a></p>
+<p>- **<strong>Paper</strong>**: <a class="inline-onebox" href="https://3we.org/paper" rel="noopener nofollow ugc">Paper - 3we</a></p>
+<p>- **<strong>PyPI</strong>**: `pip install threewe`</p>
+<p>Feedback welcome — especially from Nav2 users on whether the API abstraction makes sense, and from AI researchers on what’s missing for their workflows.</p>
+<p>Software: Apache 2.0 | Hardware: CERN-OHL-P v2 | Docs: CC-BY-SA 4.0</p>
+            <p><small>6 posts - 3 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/3we-ai-first-python-api-for-mobile-robot-navigation-open-source-300-bom/54872">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-15T15:47:28Z</updated>
+    <published>2026-05-15T15:47:28Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>telleroutlook</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/3we-ai-first-python-api-for-mobile-robot-navigation-open-source-300-bom/54872.rss" title="3we: AI-First Python API for Mobile Robot Navigation (Open Source, $300 BOM)"/>
+      <updated>2026-05-22T21:01:40Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54865</id>
+    <link href="https://discourse.openrobotics.org/t/what-patterns-of-logs-or-warnings-should-an-automated-bridge-promote-to-structured-faults-in-ros-2/54865" rel="alternate" type="text/html"/>
+    <title>What patterns of logs or warnings should an automated bridge promote to structured faults in ROS 2?</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>We have been working on <code>ros2_medkit</code>, an Apache 2.0 fault aggregation gateway for ROS 2 that follows the SOVD model (ISO 17978-3). All of it lives in <a class="inline-onebox" href="https://github.com/selfpatch/ros2_medkit" rel="noopener nofollow ugc">GitHub - selfpatch/ros2_medkit: ros2_medkit - diagnostics gateway for ROS 2 robots. Faults, live data, operations, scripts, locking, triggers, and OTA updates via REST API. No SSH, no custom tooling. · GitHub</a></p>
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/a/2/a2a349465bf7f4c5ac388286be01c124b1b73767.png" rel="noopener nofollow ugc" title="discoursediagram"><img alt="discoursediagram" height="322" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/a/2/a2a349465bf7f4c5ac388286be01c124b1b73767_2_690x322.png" width="690"/></a></div><p/>
+<p>Two integration paths today:</p>
+<ol>
+<li>
+<p><strong><code>/diagnostics</code> topic</strong> - drop-in, no code changes on the publisher side. Works for any package already using <code>diagnostic_updater</code>.</p>
+</li>
+<li>
+<p><strong>Native <code>FaultReporter</code> instrumentation</strong> - each failure surface emits a structured fault code directly. We tried this on a manymove fork to see how invasive it is to add per-action-node fault reporting. PR is here for reference: <a class="inline-onebox" href="http://github.com/selfpatch/manymove/pull/1" rel="noopener nofollow ugc">Feat/medkit integration by mfaferek93 · Pull Request #1 · selfpatch/manymove · GitHub</a> - the integration itself was small (one mixin + a fault-codes header), but that fork is a fairly clean codebase. Most production stacks have a much messier <code>RCLCPP_ERROR</code> / <code>RCLCPP_WARN</code> history that nobody is going to retroactively convert.</p>
+</li>
+</ol>
+<p>Native <code>FaultReporter</code> is the right answer when you control the codebase end-to-end - structured codes from day zero, lowest friction long-term. The painful case is the long tail of existing ROS 2 packages that already work fine and never emitted <code>/diagnostics</code>. For those, the drop-in bridge has nothing to subscribe to, and asking maintainers to instrument every node won’t happen. If the goal is to make structured diagnostics adoptable across the ecosystem, plug-and-play needs to mean more than “use <code>/diagnostics</code>”.</p>
+<p>That gap is what we want to validate with you.</p>
+<p>We are considering a third path: a <strong>logs-to-faults bridge</strong> that watches <code>/rosout</code> (or arbitrary log streams) and promotes selected patterns to structured fault events, with configurable rules (severity mapping, dedup, rate limiting). Goal: a team can adopt structured diagnostics without touching their existing code. If it works out, it ships in the same open repo as the rest of medkit.</p>
+<p>Three questions where your experience would help more than ours:</p>
+<ul>
+<li>
+<p>What log patterns in your stack would you actually want auto-promoted to structured faults? (specific examples &gt; taxonomies)</p>
+</li>
+<li>
+<p>What blocks your team from using <code>/diagnostics</code> more widely today?</p>
+</li>
+<li>
+<p>For a logs-to-faults bridge to be useful and not noisy, what would have to be true? (rules engine, allowlist-only, ML, something else?)</p>
+</li>
+</ul>
+<p>Curious what others have tried, especially on the failure-modes side.</p>
+<div class="poll-title">How do you currently surface fault/error state from your ROS 2 nodes?</div>
+<div class="poll-title">How do you currently surface fault/error state from your ROS 2 nodes?</div>
+<ul>
+<li>/diagnostics (DiagnosticArray)</li>
+<li>Custom error/event topics</li>
+<li>Logs (RCLCPP_ERROR / RCLCPP_WARN)</li>
+<li>Action results / service error codes</li>
+<li>Behavior tree / lifecycle state changes</li>
+<li>Tracing / OpenTelemetry</li>
+<li>No consistent pattern yet</li>
+</ul>
+<p><a href="https://discourse.openrobotics.org/t/what-patterns-of-logs-or-warnings-should-an-automated-bridge-promote-to-structured-faults-in-ros-2/54865/1">Click to view the poll.</a></p>
+            <p><small>6 posts - 4 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/what-patterns-of-logs-or-warnings-should-an-automated-bridge-promote-to-structured-faults-in-ros-2/54865">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-15T10:04:09Z</updated>
+    <published>2026-05-15T10:04:09Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Michal_Faferek</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/what-patterns-of-logs-or-warnings-should-an-automated-bridge-promote-to-structured-faults-in-ros-2/54865.rss" title="What patterns of logs or warnings should an automated bridge promote to structured faults in ROS 2?"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54841</id>
+    <link href="https://discourse.openrobotics.org/t/the-accountability-gap-in-ros2-where-does-why-did-the-robot-do-that-get-answered/54841" rel="alternate" type="text/html"/>
+    <title>The accountability gap in ROS2: where does "why did the robot do that?" get answered?</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>A question I keep running into and don’t have a clean answer for: when a<br/>
+ROS2-based autonomous system makes a consequential decision — a mobile<br/>
+robot reroutes around a person, an arm stops mid-motion, a drone aborts —<br/>
+we can answer <em>what</em> it did. ros2 bag captures the topics. But <em>why</em> it<br/>
+did that, in a form a safety officer, an insurance adjuster, or a regulator<br/>
+can read, is almost always reconstructed after the fact, by hand.</p>
+<p>Four specific observations, curious where I’m wrong:</p>
+<p><strong>1. Rule provenance is invisible.</strong> When a BehaviorTree node fires, we<br/>
+log the node, not the human-authored policy that made the node legal. No<br/>
+first-class link from “robot stopped” to “rule §3.2 of safety policy v4<br/>
+triggered.”</p>
+<p><strong>2. Guardrails are one-way safety, not auditable downgrades.</strong> Most ROS2<br/>
+safety layers I’ve seen are kill switches or velocity caps. They prevent<br/>
+harm but produce no signed record of “planner wanted X, guardrail<br/>
+downgraded to Y, here’s the chain.”</p>
+<p><strong>3. LLM-in-the-loop adds a new failure mode.</strong> With VLA stacks plugging<br/>
+into task planning, the “why” gets harder. Did the model suggest the<br/>
+action? Was it followed, overridden, sanitized? I don’t see standard hooks<br/>
+for any of this in the stack.</p>
+<p><strong>4. EU AI Act Article 12 and 14 are now in force for high-risk autonomous<br/>
+systems.</strong> Most teams I talk to plan to handle “logging” and “human<br/>
+oversight” with ros2 bag plus a spreadsheet. That will not survive a<br/>
+regulator audit, and CE marking deadlines for some categories hit in 2027.</p>
+<p>Three questions for people deeper in this than me:</p>
+<ul>
+<li>Is there an active REP or working group on decision provenance that I<br/>
+missed? I found scattered threads, no spec.</li>
+<li>For Nav2 + BehaviorTree.CPP teams: how do you currently answer “why<br/>
+did the robot decide that?” for non-engineer stakeholders?</li>
+<li>Has anyone added cryptographic signing to the rosbag pipeline, or is<br/>
+everyone trusting the filesystem and timestamps?</li>
+</ul>
+<p>I’ve been building an opinionated implementation of some of this — rule<br/>
+provenance, signed audit chain, guardrail-downgrade-only pattern, LLM<br/>
+sanitization — outside of ROS2, and I’m trying to figure out if the pieces<br/>
+that generalize are worth porting and open-sourcing.</p>
+<p>If this resonates, drop a reply or DM. Looking for both “you’re missing<br/>
+existing work X” and “yes this is broken in our deployment, here’s how.”</p>
+            <p><small>10 posts - 3 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/the-accountability-gap-in-ros2-where-does-why-did-the-robot-do-that-get-answered/54841">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-14T19:35:05Z</updated>
+    <published>2026-05-14T19:35:05Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>altunbulakemre75</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/the-accountability-gap-in-ros2-where-does-why-did-the-robot-do-that-get-answered/54841.rss" title="The accountability gap in ROS2: where does &quot;why did the robot do that?&quot; get answered?"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54831</id>
+    <link href="https://discourse.openrobotics.org/t/rviz-2d-plot-plugin-live-2d-plotting-inside-rviz-2/54831" rel="alternate" type="text/html"/>
+    <title>Rviz_2d_plot_plugin: Live 2D Plotting Inside RViz 2</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Hi everyone,</p>
+<p>Iâ€™m happy to share an open-source RViz 2 plugin I have been working on:</p>
+<p><strong>rviz_2d_plot_plugin</strong></p>
+<p>The plugin provides live 2D plotting directly inside RViz 2 as a screen-space overlay. The goal is to make it easier to monitor ROS 2 topic data, controller signals, odometry-related values, diagnostics, and other runtime signals without leaving the RViz environment.</p>
+<p>Some of the current features include:</p>
+<ul>
+<li>Runtime discovery of plottable ROS 2 topic fields</li>
+<li>Time-series plotting</li>
+<li>XY plotting</li>
+<li>Multi-series plotting from different topics</li>
+<li>Reference lines, limits, setpoints, and tolerance bands</li>
+<li>Axis control, auto-scaling, grid, legend, and styling options</li>
+<li>QoS configuration</li>
+<li>Pause, clear, and history preservation</li>
+</ul>
+<p>The plugin is currently supported and tested on <strong>ROS 2 Humble</strong>. Support for additional ROS 2 distributions is planned and will be released soon.</p>
+<p>The project is released under the <strong>MIT license</strong>.</p>
+<p>I would be happy to receive feedback from the ROS community, especially regarding:</p>
+<ul>
+<li>API/design improvements</li>
+<li>Compatibility with other ROS 2 distributions</li>
+<li>Useful plotting features for robotics debugging workflows</li>
+<li>Packaging and release suggestions</li>
+</ul>
+<p>Repository:</p>
+<aside class="onebox githubrepo">
+  <header class="source">
+
+      <a href="https://github.com/amgaber95/rviz_2d_plot_plugin" rel="noopener nofollow ugc" target="_blank">github.com</a>
+  </header>
+
+  <article class="onebox-body">
+    <div class="github-row">
+  <span class="broken-image" title="This image is broken"><svg xmlns="http://www.w3.org/2000/svg" class="fa d-icon d-icon-link-slash svg-icon"><use/></svg></span>
+
+  <h3><a href="https://github.com/amgaber95/rviz_2d_plot_plugin" rel="noopener nofollow ugc" target="_blank">GitHub - amgaber95/rviz_2d_plot_plugin: RViz 2 plugin for live 2D plotting of ROS 2 topic...</a></h3>
+
+    <p><span class="github-repo-description">RViz 2 plugin for live 2D plotting of ROS 2 topic data directly inside RViz.</span></p>
+</div>
+
+  </article>
+
+  <div class="onebox-metadata">
+    
+    
+  </div>
+
+  <div style="clear: both;"/>
+</aside>
+
+<p/><div class="lightbox-wrapper"><a class="lightbox" href="https://us1.discourse-cdn.com/flex022/uploads/ros/original/3X/a/e/aea214bc77b80f3f43ba37693f880f22f2db509c.png" rel="noopener nofollow ugc" title="rviz 2d plot plugin"><img alt="rviz 2d plot plugin" height="358" src="https://us1.discourse-cdn.com/flex022/uploads/ros/optimized/3X/a/e/aea214bc77b80f3f43ba37693f880f22f2db509c_2_690x358.png" width="690"/></a></div><p/>
+<p>Thanks, and I hope this can be useful for others working with RViz 2 and ROS 2 system visualization.</p>
+            <p><small>5 posts - 3 participants</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/rviz-2d-plot-plugin-live-2d-plotting-inside-rviz-2/54831">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-14T15:58:16Z</updated>
+    <published>2026-05-14T15:58:16Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>Abdelrahman</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/rviz-2d-plot-plugin-live-2d-plotting-inside-rviz-2/54831.rss" title="Rviz_2d_plot_plugin: Live 2D Plotting Inside RViz 2"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+
+  <entry>
+    <id>discourse.openrobotics.org-topic-54830</id>
+    <link href="https://discourse.openrobotics.org/t/how-long-did-your-first-cross-device-ros2-setup-take/54830" rel="alternate" type="text/html"/>
+    <title>How long did your first cross-device ROS2 setup take?</title>
+    <summary type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><p>Setting up ROS2 across multiple devices (different boards, distros, DDS config) for the first time â€” how many hours or days did it take before you had nodes talking reliably?</p>
+<p>Specifically curious about:</p>
+<ul>
+<li>
+<p>Device combo (RPi + Jetson, x86 + ARM, etc.)</p>
+</li>
+<li>
+<p>What broke (DDS discovery, distro mismatch, network config?)</p>
+</li>
+<li>
+<p>Rough time lost before it worked</p>
+</li>
+</ul>
+<p>Building a scaffolding tool and want real data, not estimates.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://discourse.openrobotics.org/t/how-long-did-your-first-cross-device-ros2-setup-take/54830">Read full topic</a></p></div>
+    </summary>
+    <updated>2026-05-14T15:58:05Z</updated>
+    <published>2026-05-14T15:58:05Z</published>
+    <category term="ROS General"/>
+    <author>
+      <name>ambigram</name>
+    </author>
+    <source>
+      <link href="https://discourse.openrobotics.org/t/how-long-did-your-first-cross-device-ros2-setup-take/54830.rss" title="How long did your first cross-device ROS2 setup take?"/>
+      <updated>2026-05-22T21:01:39Z</updated>
+    </source>
+  </entry>
+</feed>
